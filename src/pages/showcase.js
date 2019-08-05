@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { BASE_URL, POPULAR, TOP_RATED, API_KEY } from './../constants/config';
 import Header from './../components/header';
-import Card from './../components/card';
 import Slider from './../components/slider';
 
-export default class Home extends Component {
+import { connect } from 'react-redux';
+import { getPopular,getToprated } from './../actions/movies';
+
+class Showcase extends Component {
 
 	constructor(){
 		super();
@@ -16,7 +18,7 @@ export default class Home extends Component {
 	}
 
 	componentDidMount(){
-		fetch(BASE_URL+POPULAR+'api_key='+API_KEY).then((data)=>data.json()).then(data=>{
+		/*fetch(BASE_URL+POPULAR+'api_key='+API_KEY).then((data)=>data.json()).then(data=>{
 			this.setState({
 				popular:data.results
 			})
@@ -26,19 +28,30 @@ export default class Home extends Component {
 			this.setState({
 				toprated:data.results
 			})
-		})
+		});*/
+		//console.log(this.props)
+		this.props.getPopular();
+		this.props.getToprated();
+	}
+
+	static getDerivedStateFromProps(props, state) {
+		if(props.popular){
+			return {
+				popular:props.popular
+			};
+		}else if(props.toprated){
+			return {
+				toprated:props.toprated
+			};
+		}
+
+		return {};
 	}
 
 	render() {
 		return (
 			<React.Fragment>
 				<Header />
-				{/*<div className="container">
-					{this.state.movies.map((movie)=>{
-						return (<Card cardMeta={movie} />)
-					})}
-				</div>*/}
-				
 				<section className="section">
 					<div className="cat-header">Most Popular</div>
 					{this.state.popular && this.state.popular.length >0 && <Slider movies={this.state.popular} size={10} />}
@@ -50,3 +63,15 @@ export default class Home extends Component {
 			</React.Fragment>);
 	}
 }
+
+const mapDispatchToProps = {
+	getPopular,
+	getToprated
+};
+
+const mapStateToProps = (state) => ({
+	popular:state.popular,
+	toprated: state.toprated
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Showcase);
