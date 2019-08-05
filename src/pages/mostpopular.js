@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
-//import Card from './../components/card';
+import Card from './../components/card';
+import { connect } from 'react-redux';
+import { getPopular } from './../actions/movies';
 
-export default class Mostpopular extends Component {
+class Mostpopular extends Component {
+	
+	componentDidMount(){
+		this.props.getPopular();
+	}
+
+	static getDerivedStateFromProps(props, state) {
+		//console.log(props)
+		return {};
+	}
+
 	render() {
-				{/*<div className="container">
-					{this.state.movies.map((movie)=>{
-						return (<Card cardMeta={movie} />)
-					})}
-				</div>*/}
+	
 		return (
-			<div>Most popular</div>
-			
+			<React.Fragment>
+				<div className="container-title">Most popular</div>
+				<div className="container">
+					{this.props.popular && this.props.popular.map((movie)=>{
+						return (<Card key={movie.id} cardMeta={movie} />)
+					})}
+				</div>		
+			</React.Fragment>
 		);
 	}
 }
+
+const mapDispatchToProps = {
+	getPopular
+};
+
+const mapStateToProps = (state) =>({
+	popular: state.popular
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Mostpopular);
