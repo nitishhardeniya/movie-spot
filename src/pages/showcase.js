@@ -39,10 +39,10 @@ class Showcase extends Component {
 				<Header />
 				<section className="section">
 					<div className="cat-header">Most Popular <a className="view-all" href="/popular">view all</a> </div>
-					{this.state.popular && this.state.popular.length >0 && <Slider movies={this.state.popular} size={10} />}
+					{this.state.popular && this.state.popular.length >0 && <Slider movies={this.state.popular} />}
 
 					<div className="cat-header">Top rated <a className="view-all" href="/toprated">view all</a></div>
-					{this.state.toprated && this.state.toprated.length >0 && <Slider movies={this.state.toprated} size={10} />}	
+					{this.state.toprated && this.state.toprated.length >0 && <Slider movies={this.state.toprated}/>}	
 				</section>
 				
 			</React.Fragment>);
