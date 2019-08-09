@@ -18,7 +18,7 @@ class Toprated extends Component {
 	
 		return (
 			<React.Fragment>
-				<div className="container-title">Most toprated</div>
+				<div className="container-title">Toprated</div>
 				<div className="container">
 					{this.props.toprated && this.props.toprated.map((movie)=>{
 						return (<Card key={movie.id} cardMeta={movie} />)

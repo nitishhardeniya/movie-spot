@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 //import { BASE_URL, POPULAR, TOP_RATED, API_KEY } from './../constants/config';
-import Header from './../components/header';
 import Slider from './../components/slider';
 
 import { connect } from 'react-redux';
@@ -36,7 +35,6 @@ class Showcase extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Header />
 				<section className="section">
 					<div className="cat-header">Most Popular <a className="view-all" href="/popular">view all</a> </div>
 					{this.state.popular && this.state.popular.length >0 && <Slider movies={this.state.popular} />}

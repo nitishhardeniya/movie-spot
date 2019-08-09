@@ -56,21 +56,58 @@
   font-size: 22px;
 }
 
+.container-title {
+  height: 35px;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 2;
+  color: #6f6f6f;
+  position: relative;
+  top: 80px;
+}
+
 .container {
   display: flex;
   position: relative;
-  margin: 0px 10%;
+  padding: 0px 10%;
   align-self: center;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  background-color: whitesmoke;
+  top: 80px;
 }
 
 .card {
   display: inline-block;
-  height: 400px;
+  min-height: 400px;
   width:25%;
-  padding: 40px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+}
+
+.card > img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 100%;
+}
+
+.card-footer {
+  padding: 10px;
+  position: relative;
+  bottom: 0px;
+  min-height: 50px;
+}
+
+.card-row {
+  min-height: 35px;
+}
+
+.font-grey {
+  font-size: 12px;
+  color: grey;
 }
 
 .mv-slider {

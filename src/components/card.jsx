@@ -1,12 +1,21 @@
 import React from 'react';
 import {IMG_THUMB} from './../constants/config';
+import moment from 'moment';
+import Rating from './rating';
 
 export default (props)	=>	{
 	
 	//console.log(props.cardMeta)
-	let {id,poster_path,title} = props.cardMeta;
+	let {id,poster_path,title,release_date,vote_average} = props.cardMeta;
 	return (<div className="card" key={id}>
 				<img src={IMG_THUMB+poster_path} width={240} height={360} alt="no img"/>
-				<div>{title}</div>
+				<div className="card-footer">
+					{/* Rating, users, add to wishlist*/}
+					<div className="card-row">{title}</div>
+					<div className="card-row">
+						<Rating score={vote_average} total={10} />
+					</div>
+					<div className="card-row font-grey">{moment(release_date).format('dddd, MMMM D YYYY')}</div>
+				</div>
 			</div>)
 }
