@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import { BASE_URL, POPULAR, TOP_RATED, API_KEY } from './../constants/config';
 import Slider from './../components/slider';
+import {Search} from './../components/filters';
 
 import { connect } from 'react-redux';
 import { getPopular,getToprated } from './../actions/movies';
@@ -26,7 +27,8 @@ class Showcase extends Component {
 		if(props.popular){
 			return {
 				popular:props.popular,
-				toprated:props.toprated
+				toprated:props.toprated,
+				movies: props.movies
 			};
 		}
 		return {};
@@ -36,11 +38,17 @@ class Showcase extends Component {
 		return (
 			<React.Fragment>
 				<section className="section">
+					<Search getFilteredResults={this.getFilteredResults}/>
+					
+					<div className="cat-header">Search results <a className="view-all" href="/popular">view all</a> </div>
+					{this.state.movies && this.state.movies.length >0 && <Slider movies={this.state.movies} />}
+
 					<div className="cat-header">Most Popular <a className="view-all" href="/popular">view all</a> </div>
 					{this.state.popular && this.state.popular.length >0 && <Slider movies={this.state.popular} />}
 
 					<div className="cat-header">Top rated <a className="view-all" href="/toprated">view all</a></div>
-					{this.state.toprated && this.state.toprated.length >0 && <Slider movies={this.state.toprated}/>}	
+					{this.state.toprated && this.state.toprated.length >0 && <Slider movies={this.state.toprated}/>}
+						
 				</section>
 				
 			</React.Fragment>);
@@ -53,8 +61,9 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-	popular:state.popular,
-	toprated: state.toprated
+	popular:state.movies.popular,
+	toprated: state.movies.toprated,
+	movies: state.movies.results
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Showcase);

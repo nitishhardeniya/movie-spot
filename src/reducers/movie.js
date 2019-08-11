@@ -8,6 +8,8 @@ const reducer = (state={},action) => {
 			return {...state,popular:action.data,loading:false}
 		case 'TOPRATED_RECEIVED':
 			return {...state,toprated:action.data,loading:false}
+		case 'RESULTS_RECIEVED' :
+			return {...state,results:action.data,loading:false};
 		default :
 			return state;
 	}
