@@ -168,4 +168,38 @@
   color: #51c0e4;
 }
 
+.img-fullpage {
+  width: 100vw;
+  height: 100vh;
+}
+
+.card-lg {
+  position: absolute;
+  width: 100vw;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.card-popup {
+  background-color: #fff;
+  position: relative;
+  width: 50vw;
+  bottom: 300px;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+}
+
+.genre {
+  display: inline-block;
+  height: 15px;
+  padding: 5px;
+  background-color: tomato;
+  color:#fff;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 12px;
+}
+
 

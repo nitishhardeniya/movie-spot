@@ -34,7 +34,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) =>({
-	popular: state.popular
+	popular: state.movies.popular
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Mostpopular);

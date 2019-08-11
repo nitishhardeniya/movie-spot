@@ -18,10 +18,17 @@ function* fetchSearchRes(action){
 	yield put({type:'RESULTS_RECIEVED',data:search.results})
 }
 
+function* fetchMovieInfo(action){
+	const movieId = action.query;
+	const search = yield fetch(BASE_URL+'movie/'+movieId+'?api_key='+API_KEY).then((data)=>data.json());
+	yield put({type:'INFO_RECIEVED',data:search})
+}
+
 function* actionWatcher(){
 	yield takeLatest('GET_POPULAR',fetchPopular)
 	yield takeLatest('GET_TOPRATED',fetchToprated)
 	yield takeLatest('GET_SEARCH',fetchSearchRes)
+	yield takeLatest('GET_MOVIE_INFO',fetchMovieInfo)
 }
 
 export default function* rootSaga(){

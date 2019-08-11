@@ -5,3 +5,8 @@ export const getPopular = () => ({
 export const getToprated = () => ({
       type: 'GET_TOPRATED',
 });
+
+export const getMovieInfo = (movieId) => ({
+      type: 'GET_MOVIE_INFO',
+      query: movieId
+});

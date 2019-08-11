@@ -5,6 +5,7 @@ import Header from './components/header';
 import Showcase from './pages/showcase';
 import Mostpopular from './pages/mostpopular';
 import Toprated from './pages/toprated';
+import Info from './pages/info';
 
 //Router
 import {Switch,Route} from 'react-router-dom';
@@ -26,6 +27,7 @@ const Nav = () => {
         <Route path='/' component={Showcase} exact/>
         <Route path='/popular' render={()=> <Mostpopular popular={movieStore.getState().popular} />} />
         <Route path='/toprated' component={Toprated} />
+        <Route path='/movie/:movieId' component={Info} />
       </Switch>
     </BrowserRouter>)
 }

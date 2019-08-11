@@ -1,6 +1,7 @@
 module.exports = {
 	"BASE_URL":"https://api.themoviedb.org/3/",
 	"IMG_THUMB" : "http://image.tmdb.org/t/p/w500",
+	"IMG_ORIGINAL" : "http://image.tmdb.org/t/p/original",
 	"POPULAR" : "movie/popular?",
 	"TOP_RATED" : "movie/top_rated?",
 	"SEARCH" : "search/movie?",

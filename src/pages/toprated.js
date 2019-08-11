@@ -34,7 +34,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) =>({
-	toprated: state.toprated
+	toprated: state.movies.toprated
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Toprated);

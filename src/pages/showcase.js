@@ -40,15 +40,12 @@ class Showcase extends Component {
 				<section className="section">
 					<Search getFilteredResults={this.getFilteredResults}/>
 					
-					<div className="cat-header">Search results <a className="view-all" href="/popular">view all</a> </div>
-					{this.state.movies && this.state.movies.length >0 && <Slider movies={this.state.movies} />}
+					{this.state.movies && this.state.movies.length >0 && <React.Fragment> <div className="cat-header">Search results <a className="view-all" href="/popular">view all</a> </div> <Slider movies={this.state.movies} /> </React.Fragment>}
 
-					<div className="cat-header">Most Popular <a className="view-all" href="/popular">view all</a> </div>
-					{this.state.popular && this.state.popular.length >0 && <Slider movies={this.state.popular} />}
+					{this.state.popular && this.state.popular.length >0 && <React.Fragment> <div className="cat-header">Most Popular <a className="view-all" href="/popular">view all</a> </div> <Slider movies={this.state.popular} /> </React.Fragment>}
 
-					<div className="cat-header">Top rated <a className="view-all" href="/toprated">view all</a></div>
-					{this.state.toprated && this.state.toprated.length >0 && <Slider movies={this.state.toprated}/>}
-						
+					{this.state.toprated && this.state.toprated.length >0 && <React.Fragment> <div className="cat-header">Top rated <a className="view-all" href="/toprated">view all</a></div> <Slider movies={this.state.toprated} /> </React.Fragment>}
+
 				</section>
 				
 			</React.Fragment>);
