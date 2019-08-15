@@ -22,7 +22,7 @@ movieStore.subscribe(()=>{
 });
 
 const Nav = () => {
-  return (<BrowserRouter basename={process.env.PUBLIC_URL}>
+  return (<BrowserRouter basename="/">
       <Switch>
         <Route path='/' component={Showcase} exact/>
         <Route path='/popular' render={()=> <Mostpopular popular={movieStore.getState().popular} />} />
