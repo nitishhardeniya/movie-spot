@@ -116,7 +116,7 @@ button {
 .card {
   display: inline-block;
   min-height: 400px;
-  width:25%;
+  width:250px;
   margin: 40px;
   background-color: #fff;
   border-radius: 5px;
