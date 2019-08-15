@@ -9,7 +9,7 @@ import Info from './pages/info';
 
 //Router
 import {Switch,Route} from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 //Redux configs
 import {Provider} from 'react-redux';
@@ -22,14 +22,14 @@ movieStore.subscribe(()=>{
 });
 
 const Nav = () => {
-  return (<BrowserRouter basename={process.env.PUBLIC_URL}>
+  return (<HashRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path='/' component={Showcase} exact/>
         <Route path='/popular' render={()=> <Mostpopular popular={movieStore.getState().popular} />} />
         <Route path='/toprated' component={Toprated} />
         <Route path='/movie/:movieId' component={Info} />
       </Switch>
-    </BrowserRouter>)
+    </HashRouter>)
 }
 
 function App() {
