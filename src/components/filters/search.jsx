@@ -15,7 +15,7 @@ class Search extends Component {
 	},2000)
 
 	render(){
-		return (<div className="saerch-box">
+		return (<div className="search-box">
 				<input type="text" onChange={event => this.getFilteredResults(event.target.value)} />
 			</div>)
 	}

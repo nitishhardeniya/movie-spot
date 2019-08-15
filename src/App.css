@@ -32,6 +32,41 @@
   }
 }
 
+.search-box {
+  position: relative;
+  height: 50px;
+  width: 100%;
+}
+
+.search-box > input[type=text] {
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+}
+
+button {
+  height: 30px;
+  font-size: 14px;
+  text-transform: capitalize;
+  background-color: #fff;
+  color:#000000;
+  border-radius: 20px;
+  padding: 5px 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: tomato;
+  color: #ffffff;
+  border: 1px solid;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: tomato;
+  border: 1px solid;
+}
 
 .top-bar {
   height: 80px;
@@ -103,6 +138,7 @@
 
 .card-row {
   min-height: 35px;
+  font-size: 12px;
 }
 
 .font-grey {
@@ -185,10 +221,18 @@
   background-color: #fff;
   position: relative;
   width: 50vw;
-  bottom: 300px;
+  bottom: 450px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 25px;
+  min-height: 500px;
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+}
+
+.popup-title {
+  height: 50px;
+  padding: 5px;
+  font-size: 26px;
+  color:tomato;
 }
 
 .genre {
@@ -200,6 +244,12 @@
   border-radius: 5px;
   margin: 5px;
   font-size: 12px;
+}
+
+.desc {
+  padding: 10px;
+  color: grey;
+  font-size: 14px;
 }
 
 
