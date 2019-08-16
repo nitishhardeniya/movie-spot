@@ -5,12 +5,8 @@ import {getSearchResult} from './../../actions/filters';
 import { connect } from 'react-redux';
 
 class Search extends Component {
-	constructor(){
-		super();
-	}
-
+	
 	getFilteredResults = Common._debounce((text) => {
-		console.log("Im called",text);
 		this.props.getSearchResult(text);
 	},2000)
 

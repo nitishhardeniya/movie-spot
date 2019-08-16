@@ -4,12 +4,16 @@ const reducer = (state={},action) => {
 			return {...state,loading:true};
 		case 'GET_TOPRATED':
 			return {...state,loading:true};
+		case 'GET_UPCOMING':
+			return {...state,loading:true};
 		case 'GET_MOVIE_INFO':
 			return {...state,loading:true};
 		case 'POPULAR_RECEIVED':
 			return {...state,popular:action.data,loading:false}
 		case 'TOPRATED_RECEIVED':
 			return {...state,toprated:action.data,loading:false}
+		case 'UPCOMING_RECEIVED':
+			return {...state,upcoming:action.data,loading:false}
 		case 'RESULTS_RECIEVED' :
 			return {...state,results:action.data,loading:false};
 		case 'INFO_RECIEVED' :

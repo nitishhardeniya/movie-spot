@@ -12,22 +12,45 @@ class Info extends Component {
 		this.props.getMovieInfo(this.props.match.params.movieId);
 	}
 
-	addToWishlist = (movieId) => {
+	addToWishlist = (movie) => {
 		//Add this to localStorage
 		//console.log(movieId);
-		LS.setData("wishlist",[movieId]);
+		let wishlistItem = {
+			id: movie.id,
+			name: movie.title,
+			backdrop_path : movie.backdrop_path
+		}
+		let currentWL = LS.getData("wishlist");
+		if(currentWL){
+			currentWL[wishlistItem.id] = wishlistItem;
+		}else{
+			currentWL = {};
+			currentWL[wishlistItem.id] = wishlistItem;
+		}
+		LS.setData("wishlist",currentWL);
+	
 	}
 
 	getMovieDisplay(info){
+		let currentWL = LS.getData("wishlist");
+		if(currentWL.hasOwnProperty(info.id)){
+			console.log("Im in wishlist",info)
+		}
 		return (<div className="main-content">
-					<img src={IMG_ORIGINAL+info.backdrop_path} class="img-fullpage"  alt="no img"/>
+					<img src={IMG_ORIGINAL+info.backdrop_path} className="img-fullpage"  alt="no img"/>
 					<div className="card-lg">
 						<div className="card-popup">
 							<div className="popup-title">{info.title}</div>
 							<div className="card-row">{info.genres.map(item => <div className="genre">{item.name}</div>)} </div>
-							<div className="card-row font-grey">{moment(info.release_date).format('dddd, MMMM D YYYY')}</div>
+							<div className="card-row font-grey" style={{marginLeft:'5px'}}>{moment(info.release_date).format('dddd, MMMM D YYYY')}</div>
 							<p className="card-row desc">{info.overview}</p>
-							<button className="btn-secondary" onClick={()=>{this.addToWishlist(info.id)}}>Add to wishlist</button>
+							<div className="card-row">
+								{currentWL.hasOwnProperty(info.id) ? <div className="wishlisted">
+									<i class="material-icons">done</i>
+									Wishlisted
+								</div> : 
+								<button className="btn-secondary" onClick={()=>{this.addToWishlist(info)}}>Add to wishlist</button>}
+							</div>
 						</div>
 					</div>
 				</div>);

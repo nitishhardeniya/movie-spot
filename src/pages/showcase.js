@@ -4,7 +4,7 @@ import Slider from './../components/slider';
 import {Search} from './../components/filters';
 
 import { connect } from 'react-redux';
-import { getPopular,getToprated } from './../actions/movies';
+import { getPopular,getToprated,getUpcoming } from './../actions/movies';
 
 class Showcase extends Component {
 
@@ -13,13 +13,16 @@ class Showcase extends Component {
 		this.state = {
 			movies:[],
 			popular:[],
-			toprated:[]
+			toprated:[],
+			upcoming:[],
+			filters : {}
 		}
 	}
 
 	componentDidMount(){
 		this.props.getPopular();
 		this.props.getToprated();
+		this.props.getUpcoming();
 	}
 
 	static getDerivedStateFromProps(props, state) {
@@ -28,7 +31,9 @@ class Showcase extends Component {
 			return {
 				popular:props.popular,
 				toprated:props.toprated,
-				movies: props.movies
+				upcoming:props.upcoming,
+				movies: props.movies,
+				filters: props.filters
 			};
 		}
 		return {};
@@ -38,9 +43,11 @@ class Showcase extends Component {
 		return (
 			<React.Fragment>
 				<section className="section">
-					<Search getFilteredResults={this.getFilteredResults}/>
+					<Search />
 					
-					{this.state.movies && this.state.movies.length >0 && <React.Fragment> <div className="cat-header">Search results <a className="view-all" href="/popular">view all</a> </div> <Slider movies={this.state.movies} /> </React.Fragment>}
+					{this.state.movies && this.state.movies.length >0 && <React.Fragment> <div className="cat-header">Search results : <b>{this.props.filters.query}</b> <a className="view-all" href="/popular">view all</a> </div> <Slider movies={this.state.movies} /> </React.Fragment>}
+
+					{this.state.upcoming && this.state.upcoming.length >0 && <React.Fragment> <div className="cat-header">Upcoming <a className="view-all" href="/upcoming">view all</a> </div> <Slider movies={this.state.upcoming} /> </React.Fragment>}
 
 					{this.state.popular && this.state.popular.length >0 && <React.Fragment> <div className="cat-header">Most Popular <a className="view-all" href="/popular">view all</a> </div> <Slider movies={this.state.popular} /> </React.Fragment>}
 
@@ -54,13 +61,16 @@ class Showcase extends Component {
 
 const mapDispatchToProps = {
 	getPopular,
-	getToprated
+	getToprated,
+	getUpcoming
 };
 
 const mapStateToProps = (state) => ({
 	popular:state.movies.popular,
 	toprated: state.movies.toprated,
-	movies: state.movies.results
+	upcoming: state.movies.upcoming,
+	movies: state.movies.results,
+	filters: state.filters
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Showcase);

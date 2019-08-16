@@ -5,6 +5,8 @@ import Header from './components/header';
 import Showcase from './pages/showcase';
 import Mostpopular from './pages/mostpopular';
 import Toprated from './pages/toprated';
+import Upcoming from './pages/upcoming';
+//import Category from './pages/category';
 import Info from './pages/info';
 
 //Router
@@ -25,8 +27,10 @@ const Nav = () => {
   return (<HashRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path='/' component={Showcase} exact/>
-        <Route path='/popular' render={()=> <Mostpopular popular={movieStore.getState().popular} />} />
+        <Route path='/upcoming' component={Upcoming} />
+        <Route path='/popular' component={Mostpopular} />
         <Route path='/toprated' component={Toprated} />
+        {/*<Route path='/category/:category' component={Category} />*/}
         <Route path='/movie/:movieId' component={Info} />
       </Switch>
     </HashRouter>)
