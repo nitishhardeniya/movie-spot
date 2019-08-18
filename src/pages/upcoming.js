@@ -18,7 +18,7 @@ class Mostpopular extends Component {
 	
 		return (
 			<React.Fragment>
-				<div className="container-title">Most upcoming</div>
+				<div className="container-title">Upcoming</div>
 				<div className="container">
 					{this.props.upcoming && this.props.upcoming.map((movie)=>{
 						return (<Card key={movie.id} cardMeta={movie} />)

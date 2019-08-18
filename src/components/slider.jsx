@@ -20,7 +20,7 @@ const Slider = (props)	=>	{
 							</div>
 							<div className="tile-footer">
 								<div>{movie.title}</div>
-								{currentWL.hasOwnProperty(movie.id) ? <i class="material-icons mi-color">favorite</i> : <i class="material-icons mi-color">favorite_border</i>}
+								{currentWL && currentWL.hasOwnProperty(movie.id) ? <i className="material-icons mi-color">favorite</i> : <i className="material-icons mi-color">favorite_border</i>}
 							</div>
 							
 							</div>

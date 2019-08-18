@@ -3,7 +3,7 @@ import Card from './../components/card';
 import { connect } from 'react-redux';
 import { getPopular, getUpcoming, getToprated } from './../actions/movies';
 
-const Categories = {
+/*const Categories = {
 	popular: {
 		type : 'popular',
 		action : getPopular
@@ -16,7 +16,7 @@ const Categories = {
 		type : 'toprated',
 		action : getToprated
 	}
-}
+}*/
 
 let currentCat;
 
@@ -25,7 +25,14 @@ class Category extends Component {
 	componentDidMount(){
 		currentCat = this.props.match.params.category;
 		console.log(currentCat,"nh");
-		this.props.getToprated();
+
+		if(currentCat == 'popular'){
+			this.props.getPopular();	
+		} else if(currentCat == 'upcoming'){
+			this.props.getUpcoming();	
+		} else if(currentCat == 'toprated'){
+			this.props.getToprated();	
+		}
 	}
 
 	render() {
@@ -43,16 +50,16 @@ class Category extends Component {
 	}
 }
 
-console.log(Categories[currentCat])
-
 const mapDispatchToProps = {
-	//Categories[currentCat].action
+	getPopular,
+	getUpcoming,
 	getToprated
 };
 
 const mapStateToProps = (state) =>({
-	currentCat : state.movies[currentCat]
-	//toprated: state.movies.toprated
+	popular: state.movies.popular,
+	upcoming: state.movies.upcoming,
+	toprated: state.movies.toprated
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Category);

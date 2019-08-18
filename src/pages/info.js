@@ -33,7 +33,7 @@ class Info extends Component {
 
 	getMovieDisplay(info){
 		let currentWL = LS.getData("wishlist");
-		if(currentWL.hasOwnProperty(info.id)){
+		if(currentWL && currentWL.hasOwnProperty(info.id)){
 			console.log("Im in wishlist",info)
 		}
 		return (<div className="main-content">
@@ -41,11 +41,11 @@ class Info extends Component {
 					<div className="card-lg">
 						<div className="card-popup">
 							<div className="popup-title">{info.title}</div>
-							<div className="card-row">{info.genres.map(item => <div className="genre">{item.name}</div>)} </div>
+							<div className="card-row">{info.genres.map(item => <div key={item.id} className="genre">{item.name}</div>)} </div>
 							<div className="card-row font-grey" style={{marginLeft:'5px'}}>{moment(info.release_date).format('dddd, MMMM D YYYY')}</div>
 							<p className="card-row desc">{info.overview}</p>
 							<div className="card-row">
-								{currentWL.hasOwnProperty(info.id) ? <div className="wishlisted">
+								{currentWL && currentWL.hasOwnProperty(info.id) ? <div className="wishlisted">
 									<i class="material-icons">done</i>
 									Wishlisted
 								</div> : 

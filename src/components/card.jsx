@@ -1,13 +1,19 @@
 import React from 'react';
+import { withRouter } from "react-router";
+
 import {IMG_THUMB} from './../constants/config';
 import moment from 'moment';
 import Rating from './rating';
 
-export default (props)	=>	{
+const Card = (props)	=>	{
 	
+	const gotoMovie = (movieId) => {
+		props.history.push('/movie/'+movieId)
+	}
+
 	//console.log(props.cardMeta)
 	let {id,poster_path,title,release_date,vote_average} = props.cardMeta;
-	return (<div className="card" key={id}>
+	return (<div className="card" key={id} onClick={() => gotoMovie(id)} >
 				<img src={IMG_THUMB+poster_path} width={240} height={360} alt="no img"/>
 				<div className="card-footer">
 					{/* Rating, users, add to wishlist*/}
@@ -19,3 +25,5 @@ export default (props)	=>	{
 				</div>
 			</div>)
 }
+
+export default withRouter(Card);

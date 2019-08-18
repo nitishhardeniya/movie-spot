@@ -45,7 +45,7 @@ class Showcase extends Component {
 				<section className="section">
 					<Search />
 					
-					{this.state.movies && this.state.movies.length >0 && <React.Fragment> <div className="cat-header">Search results : <b>{this.props.filters.query}</b> <a className="view-all" href="/popular">view all</a> </div> <Slider movies={this.state.movies} /> </React.Fragment>}
+					{this.state.movies && this.state.movies.length >0 && <React.Fragment> <div className="cat-header">Search results : <b>{this.props.filters.query}</b> </div> <Slider movies={this.state.movies} /> </React.Fragment>}
 
 					{this.state.upcoming && this.state.upcoming.length >0 && <React.Fragment> <div className="cat-header">Upcoming <a className="view-all" href="/upcoming">view all</a> </div> <Slider movies={this.state.upcoming} /> </React.Fragment>}
 
