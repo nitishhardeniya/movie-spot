@@ -4,7 +4,7 @@ import Slider from './../components/slider';
 import {Search} from './../components/filters';
 
 import { connect } from 'react-redux';
-import { getPopular,getToprated,getUpcoming } from './../actions/movies';
+import { getMoviesByCategory } from './../actions/movies';
 
 class Showcase extends Component {
 
@@ -20,9 +20,9 @@ class Showcase extends Component {
 	}
 
 	componentDidMount(){
-		this.props.getPopular();
-		this.props.getToprated();
-		this.props.getUpcoming();
+		this.props.getMoviesByCategory('UPCOMING');
+		this.props.getMoviesByCategory('TOP_RATED');
+		this.props.getMoviesByCategory('POPULAR');
 	}
 
 	static getDerivedStateFromProps(props, state) {
@@ -60,15 +60,13 @@ class Showcase extends Component {
 }
 
 const mapDispatchToProps = {
-	getPopular,
-	getToprated,
-	getUpcoming
+	getMoviesByCategory
 };
 
 const mapStateToProps = (state) => ({
-	popular:state.movies.popular,
-	toprated: state.movies.toprated,
-	upcoming: state.movies.upcoming,
+	popular:state.movies.POPULAR,
+	toprated: state.movies.TOP_RATED,
+	upcoming: state.movies.UPCOMING,
 	movies: state.movies.results,
 	filters: state.filters
 });

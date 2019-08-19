@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Card from './../components/card';
 import { connect } from 'react-redux';
-import { getUpcoming } from './../actions/movies';
+import { getMoviesByCategory } from './../actions/movies';
 
 class Mostpopular extends Component {
 	
 	componentDidMount(){
-		this.props.getUpcoming();
+		this.props.getMoviesByCategory('UPCOMING');
 	}
 
 	static getDerivedStateFromProps(props, state) {
@@ -30,11 +30,11 @@ class Mostpopular extends Component {
 }
 
 const mapDispatchToProps = {
-	getUpcoming
+	getMoviesByCategory
 };
 
 const mapStateToProps = (state) =>({
-	upcoming: state.movies.upcoming
+	upcoming: state.movies.UPCOMING
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Mostpopular);
