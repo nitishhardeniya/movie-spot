@@ -13,7 +13,7 @@ class Search extends Component {
 	render(){
 		return (<div className="search-box">
 				<i className="material-icons mi-color mi-pointer" style={{position: 'absolute',top: '15px',right: '10px'}}>search</i>
-				<input type="text" onChange={event => this.getFilteredResults(event.target.value)} />
+				<input type="text" placeholder="Search for movies ..." onChange={event => this.getFilteredResults(event.target.value)} />
 			</div>)
 	}
 }

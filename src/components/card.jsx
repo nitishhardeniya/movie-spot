@@ -17,11 +17,11 @@ const Card = (props)	=>	{
 				<img src={IMG_THUMB+poster_path} width={240} height={360} alt="no img"/>
 				<div className="card-footer">
 					{/* Rating, users, add to wishlist*/}
-					<div className="card-row">{title}</div>
-					<div className="card-row">
+					<div className="card-row-sm">{title}</div>
+					<div className="card-row-sm">
 						<Rating score={vote_average} total={10} />
 					</div>
-					<div className="card-row font-grey">{moment(release_date).format('dddd, MMMM D YYYY')}</div>
+					<div className="card-row-sm font-grey">{moment(release_date).format('dddd, MMMM D YYYY')}</div>
 				</div>
 			</div>)
 }
