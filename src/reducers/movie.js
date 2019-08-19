@@ -1,23 +1,19 @@
 const reducer = (state={},action) => {
 	switch(action.type){
-		case 'GET_POPULAR':
-			return {...state,loading:true};
-		case 'GET_TOPRATED':
-			return {...state,loading:true};
-		case 'GET_UPCOMING':
+		case 'GET_MOVIES_BY_CAT':
 			return {...state,loading:true};
 		case 'GET_MOVIE_INFO':
 			return {...state,loading:true};
-		case 'POPULAR_RECEIVED':
-			return {...state,popular:action.data,loading:false}
-		case 'TOPRATED_RECEIVED':
-			return {...state,toprated:action.data,loading:false}
-		case 'UPCOMING_RECEIVED':
-			return {...state,upcoming:action.data,loading:false}
+		case 'GET_SEARCH' :
+			return {...state,loading:true};
+		case 'MOVIES_BY_CAT_RECEIVED':
+			let newObj = {};
+			newObj[action.query] = action.data;
+			return {...state,...newObj,loading:false};
 		case 'RESULTS_RECIEVED' :
 			return {...state,results:action.data,loading:false};
 		case 'INFO_RECIEVED' :
-			return {...state,info:action.data,loading:false}
+			return {...state,info:action.data,loading:false};
 		default :
 			return state;
 	}
