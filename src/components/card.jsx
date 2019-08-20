@@ -26,4 +26,4 @@ const Card = (props)	=>	{
 			</div>)
 }
 
-export default withRouter(Card);
+export default React.memo(withRouter(Card));

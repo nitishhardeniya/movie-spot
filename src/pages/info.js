@@ -18,7 +18,7 @@ class Info extends Component {
 		let wishlistItem = {
 			id: movie.id,
 			name: movie.title,
-			backdrop_path : movie.backdrop_path
+			poster_path : movie.poster_path
 		}
 		let currentWL = LS.getData("wishlist");
 		if(currentWL){
