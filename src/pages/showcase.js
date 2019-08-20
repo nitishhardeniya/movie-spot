@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-//import { BASE_URL, POPULAR, TOP_RATED, API_KEY } from './../constants/config';
+import React, { PureComponent } from 'react';
 import Slider from './../components/slider';
 import {Search} from './../components/filters';
 
 import { connect } from 'react-redux';
 import { getMoviesByCategory } from './../actions/movies';
 
-class Showcase extends Component {
+class Showcase extends PureComponent {
 
 	constructor(){
 		super();
