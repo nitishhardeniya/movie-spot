@@ -208,6 +208,15 @@ button {
   height: 60px
 }
 
+.wl-btn {
+  display: inline-block;
+  position: absolute;
+  right: 25px;
+  top:25px;
+  font-size:35px;
+  cursor:pointer;
+}
+
 .font-grey {
   font-size: 12px;
   color: grey;

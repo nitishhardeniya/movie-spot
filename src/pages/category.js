@@ -1,37 +1,28 @@
 import React, { Component } from 'react';
 import Card from './../components/card';
 import { connect } from 'react-redux';
-import { getPopular, getUpcoming, getToprated } from './../actions/movies';
-
-/*const Categories = {
-	popular: {
-		type : 'popular',
-		action : getPopular
-	},
-	upcoming: {
-		type : 'upcoming',
-		action : getUpcoming
-	},
-	toprated: {
-		type : 'toprated',
-		action : getToprated
-	}
-}*/
-
-let currentCat;
+import { getMoviesByCategory } from './../actions/movies';
+import Titles from './../constants/titles';
 
 class Category extends Component {
 	
-	componentDidMount(){
-		currentCat = this.props.match.params.category;
-		console.log(currentCat,"nh");
+	constructor(props){
+		super(props);
+		this.state = {
+			category : props.match.params.category,
+			allMovies : []
+		}
+	}
 
-		if(currentCat == 'popular'){
-			this.props.getPopular();	
-		} else if(currentCat == 'upcoming'){
-			this.props.getUpcoming();	
-		} else if(currentCat == 'toprated'){
-			this.props.getToprated();	
+	componentDidMount(){
+		this.props.getMoviesByCategory(this.state.category.toUpperCase());	
+	}
+
+	static getDerivedStateFromProps(props, state) {
+		if(state.category){
+			return {
+				allMovies : props[state.category]
+			};
 		}
 	}
 
@@ -39,9 +30,9 @@ class Category extends Component {
 	
 		return (
 			<React.Fragment>
-				<div className="container-title">Toprated</div>
+				<div className="container-title">{Titles[this.state.category.toUpperCase()]}</div>
 				<div className="container">
-					{this.props.toprated && this.props.toprated.map((movie)=>{
+					{this.state.allMovies && this.state.allMovies.map((movie)=>{
 						return (<Card key={movie.id} cardMeta={movie} />)
 					})}
 				</div>		
@@ -51,15 +42,13 @@ class Category extends Component {
 }
 
 const mapDispatchToProps = {
-	getPopular,
-	getUpcoming,
-	getToprated
+	getMoviesByCategory
 };
 
 const mapStateToProps = (state) =>({
-	popular: state.movies.popular,
-	upcoming: state.movies.upcoming,
-	toprated: state.movies.toprated
+	upcoming: state.movies.UPCOMING,
+	top_rated: state.movies.TOP_RATED,
+	popular: state.movies.POPULAR
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Category);
