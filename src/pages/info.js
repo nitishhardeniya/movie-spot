@@ -1,41 +1,52 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getMovieInfo } from './../actions/movies';
 import {IMG_ORIGINAL} from './../constants/config';
 import moment from 'moment';
 import LS from './../helpers/localDB';
 
-class Info extends Component {
-	
+class Info extends PureComponent {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			wishlist : {}
+		}
+	}
+
 	componentDidMount(){
-		//console.log(this.props.match.params.movieId);
 		this.props.getMovieInfo(this.props.match.params.movieId);
+		let currentWL = LS.getData("wishlist");
+		this.setState({
+			wishlist : currentWL
+		})
 	}
 
 	addToWishlist = (movie) => {
-		//Add this to localStorage
-		//console.log(movieId);
+		
 		let wishlistItem = {
 			id: movie.id,
 			name: movie.title,
 			poster_path : movie.poster_path
 		}
-		let currentWL = LS.getData("wishlist");
+		let currentWL = {...this.state.wishlist};
 		if(currentWL){
 			currentWL[wishlistItem.id] = wishlistItem;
 		}else{
 			currentWL = {};
 			currentWL[wishlistItem.id] = wishlistItem;
 		}
-		LS.setData("wishlist",currentWL);
-	
+		this.setState({
+			wishlist : currentWL
+		},()=>{
+			LS.setData("wishlist",currentWL);	
+		});
 	}
 
 	getMovieDisplay(info){
-		let currentWL = LS.getData("wishlist");
-		if(currentWL && currentWL.hasOwnProperty(info.id)){
+		/*if(this.state.wishlist && this.state.wishlist.hasOwnProperty(info.id)){
 			console.log("Im in wishlist",info)
-		}
+		}*/
 		return (<div className="main-content">
 					<img src={IMG_ORIGINAL+info.backdrop_path} className="img-fullpage"  alt="no img"/>
 					<div className="card-lg">
@@ -45,10 +56,10 @@ class Info extends Component {
 							<div className="card-row font-grey" style={{marginLeft:'5px'}}>{moment(info.release_date).format('dddd, MMMM D YYYY')}</div>
 							<p className="card-row desc">{info.overview}</p>
 							<div className="card-row">
-								{currentWL && currentWL.hasOwnProperty(info.id) ? <div className="wishlisted">
-									<i class="material-icons">done</i>
+								{this.state.wishlist && this.state.wishlist.hasOwnProperty(info.id) ? <button className="btn-primary">
+									<i className="material-icons">favorite</i>
 									Wishlisted
-								</div> : 
+								</button> : 
 								<button className="btn-secondary" onClick={()=>{this.addToWishlist(info)}}>Add to wishlist</button>}
 							</div>
 						</div>

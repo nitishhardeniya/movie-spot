@@ -72,14 +72,14 @@ button {
 }
 
 .btn-primary {
-  background-color: tomato;
+  background-color: #44d8b8;
   color: #ffffff;
   border: 1px solid;
 }
 
 .btn-secondary {
   background-color: #ffffff;
-  color: tomato;
+  color: #44d8b8;
   border: 1px solid;
 }
 
@@ -227,6 +227,7 @@ button {
   min-width: 100%;
   min-height: 370px;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   padding: 20px 0px;
   /*border: 1px solid #eaeaea;*/
 }
@@ -332,7 +333,7 @@ button {
   font-size: 14px;
 }
 
-.wishlisted {
+/*.wishlisted {
   margin: 5px;
   border-radius: 5px;
   display: inline-block;
@@ -340,6 +341,6 @@ button {
   background-color: lightgreen;
   color: green;
   border: 1px solid green;
-}
+}*/
 
 

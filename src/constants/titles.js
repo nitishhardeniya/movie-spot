@@ -1,5 +1,5 @@
 const titles = {
-	"POPULAR" : "Popular",
+	"POPULAR" : "Most popular",
 	"UPCOMING": "Upcoming",
 	"TOP_RATED":"Top rated"
 }

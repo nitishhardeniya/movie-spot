@@ -44,6 +44,8 @@ export default App;
 
 /*TODOS:
   - D Refactoring of actions
+  - Toaster notifications
+  - Wishlist to be connected to store
   - Lazy load more movies on scroll
   - D Search a movie by name
   - Filter movies by name, rating ,date
