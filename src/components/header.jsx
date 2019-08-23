@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
-import LS from './../helpers/localDB';
-import Wishlist from './wishlist';
+import { connect } from 'react-redux';
 
-export default (props) => {
+import Wishlist from './wishlist';
+//import { getMyWishlist } from './../actions/wishlist';
+
+const Header = (props) => {
 
 	const [opened, toggleOpen] = useState(false);
+
+	/*if(props.wishlist && Object.keys(props.wishlist).length == 0){
+		props.getMyWishlist();	
+	}*/
+	
 
 	return (
 		<div className="top-bar">
 			<div className="app-title"><span style={{fontWeight:'200'}}>Movie</span> Spot</div>
 			<i className="material-icons mi-color wl-btn" title="My wishlist" onClick={() => toggleOpen(!opened)}>favorite</i>
-			{opened && <Wishlist />}
+			{opened && <Wishlist data={props.wishlist}/>}
 		</div>
 	);
 }
+
+/*const mapDispatchToProps = {
+	getMyWishlist
+}*/
+
+const mapStateToProps = (state) => ({
+	wishlist: state.wishlist
+});
+
+
+export default connect(mapStateToProps,null)(Header);

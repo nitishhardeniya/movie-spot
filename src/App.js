@@ -14,11 +14,16 @@ import { HashRouter } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './store';
 
+//Default actions
+import { getMyWishlist } from './actions/wishlist';
+
 const movieStore = store;
 
 movieStore.subscribe(()=>{
   console.log("Redux state tree: ",movieStore.getState());  
 });
+
+movieStore.dispatch(getMyWishlist());
 
 const Nav = () => {
   return (<HashRouter basename={process.env.PUBLIC_URL}>
@@ -45,10 +50,11 @@ export default App;
 /*TODOS:
   - D Refactoring of actions
   - Toaster notifications
-  - Wishlist to be connected to store
-  - Lazy load more movies on scroll
+  - D Wishlist to be connected to store
+  - SASS for styles
+  - Lazy load more movies on scroll - category page
   - D Search a movie by name
-  - Filter movies by name, rating ,date
+  - Filter movies by year, rating
   - D Add a feature to add to wishlist a movie - LocalStorage
   - D Show all wishlisted movies in drawer with scheduled time to watch
   - Add a basic login mechanism to validate user

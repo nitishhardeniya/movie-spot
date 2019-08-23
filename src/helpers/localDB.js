@@ -10,6 +10,11 @@ const LS = {
 		return true;
 	},
 
+	clear : function(key){
+		localStorage.removeItem(key);
+		return true;
+	},
+
 	clearAll : function(){
 		localStorage.clear();
 		return true;

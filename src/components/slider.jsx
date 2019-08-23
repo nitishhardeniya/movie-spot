@@ -1,7 +1,7 @@
 import React from 'react';
 import {IMG_THUMB} from './../constants/config';
 import { withRouter } from "react-router";
-import LS from './../helpers/localDB';
+import { connect } from 'react-redux';
 
 const Slider = (props)	=>	{
 	let {movies} = props;
@@ -10,7 +10,7 @@ const Slider = (props)	=>	{
 		props.history.push('/movie/'+movieId)
 	}
 
-	const currentWL = LS.getData("wishlist");
+	const currentWL = props.wishlist;
 	
 	return (<div className="mv-slider">
 			{movies.map(movie => {
@@ -28,4 +28,8 @@ const Slider = (props)	=>	{
 		</div>);
 }
 
-export default React.memo(withRouter(Slider));
+const mapStateToProps = (state) => ({
+	wishlist: state.wishlist
+});
+
+export default connect(mapStateToProps,null)(React.memo(withRouter(Slider)));

@@ -1,9 +1,8 @@
 import React from 'react';
-import LS from './../helpers/localDB';
 import {IMG_THUMB} from './../constants/config';
 
 const WishList = (props) => {
-	let wishlistData = LS.getData("wishlist");
+	let wishlistData = props.data;
 	//console.log(wishlistData,"NH")
 	return (<div className="wl">
 		Nitish's wishlist :

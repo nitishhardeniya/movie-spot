@@ -1,52 +1,18 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getMovieInfo } from './../actions/movies';
+import { addToWishlist } from './../actions/wishlist';
 import {IMG_ORIGINAL} from './../constants/config';
 import moment from 'moment';
 import LS from './../helpers/localDB';
 
 class Info extends PureComponent {
 
-	constructor(props){
-		super(props);
-		this.state = {
-			wishlist : {}
-		}
-	}
-
 	componentDidMount(){
 		this.props.getMovieInfo(this.props.match.params.movieId);
-		let currentWL = LS.getData("wishlist");
-		this.setState({
-			wishlist : currentWL
-		})
-	}
-
-	addToWishlist = (movie) => {
-		
-		let wishlistItem = {
-			id: movie.id,
-			name: movie.title,
-			poster_path : movie.poster_path
-		}
-		let currentWL = {...this.state.wishlist};
-		if(currentWL){
-			currentWL[wishlistItem.id] = wishlistItem;
-		}else{
-			currentWL = {};
-			currentWL[wishlistItem.id] = wishlistItem;
-		}
-		this.setState({
-			wishlist : currentWL
-		},()=>{
-			LS.setData("wishlist",currentWL);	
-		});
 	}
 
 	getMovieDisplay(info){
-		/*if(this.state.wishlist && this.state.wishlist.hasOwnProperty(info.id)){
-			console.log("Im in wishlist",info)
-		}*/
 		return (<div className="main-content">
 					<img src={IMG_ORIGINAL+info.backdrop_path} className="img-fullpage"  alt="no img"/>
 					<div className="card-lg">
@@ -56,11 +22,11 @@ class Info extends PureComponent {
 							<div className="card-row font-grey" style={{marginLeft:'5px'}}>{moment(info.release_date).format('dddd, MMMM D YYYY')}</div>
 							<p className="card-row desc">{info.overview}</p>
 							<div className="card-row">
-								{this.state.wishlist && this.state.wishlist.hasOwnProperty(info.id) ? <button className="btn-primary">
+								{this.props.wishlist && this.props.wishlist.hasOwnProperty(info.id) ? <button className="btn-primary">
 									<i className="material-icons">favorite</i>
-									Wishlisted
+									<span>Wishlisted</span>
 								</button> : 
-								<button className="btn-secondary" onClick={()=>{this.addToWishlist(info)}}>Add to wishlist</button>}
+								<button className="btn-secondary" onClick={()=>{this.props.addToWishlist(info)}}>Add to wishlist</button>}
 							</div>
 						</div>
 					</div>
@@ -81,11 +47,13 @@ class Info extends PureComponent {
 }
 
 const mapDispatchToProps = {
-	getMovieInfo
+	getMovieInfo,
+	addToWishlist
 }
 
 const mapStateToProps = (state) => ({
-	info: state.movies.info
+	info: state.movies.info,
+	wishlist: state.wishlist
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Info);

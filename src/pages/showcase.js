@@ -39,6 +39,11 @@ class Showcase extends PureComponent {
 		return {};
 	}
 
+	goto = (e,url) => {
+		e.preventDefault();
+		this.props.history.push(url);
+	}
+
 	render() {
 		return (
 			<React.Fragment>
@@ -47,11 +52,11 @@ class Showcase extends PureComponent {
 					
 					{this.state.movies && this.state.movies.length >0 && <React.Fragment> <div className="cat-header">Search results : <b>{this.props.filters.query}</b> </div> <Slider movies={this.state.movies} /> </React.Fragment>}
 
-					{this.state.upcoming && this.state.upcoming.length >0 && <React.Fragment> <div className="cat-header">{Titles['UPCOMING']} <a className="view-all" href="/category/upcoming">view all</a> </div> <Slider movies={this.state.upcoming} /> </React.Fragment>}
+					{this.state.upcoming && this.state.upcoming.length >0 && <React.Fragment> <div className="cat-header">{Titles['UPCOMING']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/upcoming')}>view all</a> </div> <Slider movies={this.state.upcoming} /> </React.Fragment>}
 
-					{this.state.popular && this.state.popular.length >0 && <React.Fragment> <div className="cat-header">{Titles['POPULAR']} <a className="view-all" href="/category/popular">view all</a> </div> <Slider movies={this.state.popular} /> </React.Fragment>}
+					{this.state.popular && this.state.popular.length >0 && <React.Fragment> <div className="cat-header">{Titles['POPULAR']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/popular')}>view all</a> </div> <Slider movies={this.state.popular} /> </React.Fragment>}
 
-					{this.state.toprated && this.state.toprated.length >0 && <React.Fragment> <div className="cat-header">{Titles['TOP_RATED']} <a className="view-all" href="/category/top_rated">view all</a></div> <Slider movies={this.state.toprated} /> </React.Fragment>}
+					{this.state.toprated && this.state.toprated.length >0 && <React.Fragment> <div className="cat-header">{Titles['TOP_RATED']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/top_rated')}>view all</a></div> <Slider movies={this.state.toprated} /> </React.Fragment>}
 
 				</section>
 				
