@@ -4,7 +4,6 @@ import { getMovieInfo } from './../actions/movies';
 import { addToWishlist } from './../actions/wishlist';
 import {IMG_ORIGINAL} from './../constants/config';
 import moment from 'moment';
-import LS from './../helpers/localDB';
 
 class Info extends PureComponent {
 
