@@ -8,7 +8,7 @@ const reducer = (state={},action) => {
 			return {...state,loading:true};
 		case 'MOVIES_BY_CAT_RECEIVED':
 			let newObj = {};
-			newObj[action.query] = action.data;
+			newObj[action.query.category] = state[action.query.category] ? [...state[action.query.category],...action.data] :  action.data;	
 			return {...state,...newObj,loading:false};
 		case 'RESULTS_RECIEVED' :
 			return {...state,results:action.data,loading:false};

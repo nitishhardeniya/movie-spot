@@ -4,7 +4,7 @@ import CONFIG from './../constants/config';
 import LS from './../helpers/localDB';
 
 function* fetchMoviesByCategory(action){
-	const popular =	yield fetch(BASE_URL+CONFIG[action.query]+'api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
+	const popular =	yield fetch(BASE_URL+CONFIG[action.query.category]+'api_key='+API_KEY+'&page='+action.query.page).then((data)=>data.json()).catch(err => console.log(err));
 	yield put({type:'MOVIES_BY_CAT_RECEIVED',query:action.query,data:popular.results});
 }
 

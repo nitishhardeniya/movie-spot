@@ -21,6 +21,20 @@ class Info extends PureComponent {
 							<div className="card-row font-grey" style={{marginLeft:'5px'}}>{moment(info.release_date).format('dddd, MMMM D YYYY')}</div>
 							<p className="card-row desc">{info.overview}</p>
 							<div className="card-row">
+								<div className="card-column-2">
+									<span className="card-body-title">
+										<i class="material-icons">star</i>
+										{info.vote_average}
+									</span>
+								</div>
+								<div className="card-column-2">
+									<span className="card-body-title">
+										<i class="material-icons">thumb_up_alt</i>
+										{info.vote_count}
+									</span>
+								</div>
+							</div>
+							<div className="card-row">
 								{this.props.wishlist && this.props.wishlist.hasOwnProperty(info.id) ? <button className="btn-primary">
 									<i className="material-icons">favorite</i>
 									<span>Wishlisted</span>
