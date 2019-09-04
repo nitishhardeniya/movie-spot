@@ -20,6 +20,12 @@ function* fetchMovieInfo(action){
 	yield put({type:'INFO_RECIEVED',data:search});
 }
 
+function* fetchSimilarMovies(action){
+	const movieId = action.query;
+	const similar = yield fetch(BASE_URL+'movie/'+movieId+'/similar?api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
+	yield put({type:'SIMILAR_MOVIES_RECIEVED',data:similar.results});
+}
+
 function* fetchWishlist(){
 	let currentWL = LS.getData("wishlist");
 	yield put({type:'WISHLIST_ITEMS',data:currentWL});
@@ -44,12 +50,34 @@ function* addItemToWishlist(action){
 	yield put({type:'WISHLIST_ITEMS',data:currentWL});
 }
 
+function* removeFromWishlist(action){
+	const movie = action.query;
+	let currentWL = LS.getData("wishlist");
+	if(currentWL && currentWL[movie.id]){
+		delete currentWL[movie.id];
+		LS.setData("wishlist",currentWL);
+		yield put({type:'WISHLIST_ITEMS',data:currentWL,reset:true});
+	}
+}
+
+function* clearWishlist(){
+	let currentWL = LS.getData("wishlist");
+	if(currentWL && Object.keys(currentWL).length > 0){
+		currentWL = {};
+		LS.setData("wishlist",currentWL);
+		yield put({type:'WISHLIST_ITEMS',data:currentWL,reset:true});
+	}
+}
+
 function* actionWatcher(){
 	yield takeEvery('GET_MOVIES_BY_CAT',fetchMoviesByCategory);
 	yield takeLatest('GET_SEARCH',fetchSearchRes);
 	yield takeLatest('GET_MOVIE_INFO',fetchMovieInfo);
+	yield takeLatest('GET_SIMILAR_MOVIES',fetchSimilarMovies);
 	yield takeLatest('GET_WISHLIST', fetchWishlist);
 	yield takeLatest('ADD_ITEM_WISHLIST',addItemToWishlist);
+	yield takeLatest('REMOVE_ITEM_WISHLIST',removeFromWishlist);
+	yield takeLatest('CLEAR_WISHLIST',clearWishlist);
 }
 
 export default function* rootSaga(){

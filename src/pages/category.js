@@ -21,7 +21,7 @@ class Category extends Component {
 			category : this.state.category.toUpperCase(),
 			page: this.state.page
 		}
-		this.props.getMoviesByCategory(query);
+		//this.props.getMoviesByCategory(query);
 	}
 
 	static getDerivedStateFromProps(props, state) {

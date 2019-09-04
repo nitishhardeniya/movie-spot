@@ -4,6 +4,11 @@ export const getMoviesByCategory = (category) => ({
 });
 
 export const getMovieInfo = (movieId) => ({
-      type: 'GET_MOVIE_INFO',
-      query: movieId
+    type: 'GET_MOVIE_INFO',
+    query: movieId
 });
+
+export const getSimililar = (movieId) => ({
+	type : 'GET_SIMILAR_MOVIES',
+	query : movieId
+})

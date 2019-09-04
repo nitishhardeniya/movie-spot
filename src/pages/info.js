@@ -1,14 +1,22 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getMovieInfo } from './../actions/movies';
+import { getMovieInfo ,getSimililar } from './../actions/movies';
 import { addToWishlist } from './../actions/wishlist';
 import {IMG_ORIGINAL} from './../constants/config';
 import moment from 'moment';
+
+import Slider from './../components/slider';
 
 class Info extends PureComponent {
 
 	componentDidMount(){
 		this.props.getMovieInfo(this.props.match.params.movieId);
+		this.props.getSimililar(this.props.match.params.movieId);
+	}
+
+	static getDerivedStateFromProps(nextProps,state){
+		//nextProps.getMovieInfo(nextProps.match.params.movieId);
+		//nextProps.getSimililar(nextProps.match.params.movieId);
 	}
 
 	getMovieDisplay(info){
@@ -23,13 +31,13 @@ class Info extends PureComponent {
 							<div className="card-row">
 								<div className="card-column-2">
 									<span className="card-body-title">
-										<i class="material-icons">star</i>
+										<i className="material-icons">star</i>
 										{info.vote_average}
 									</span>
 								</div>
 								<div className="card-column-2">
 									<span className="card-body-title">
-										<i class="material-icons">thumb_up_alt</i>
+										<i className="material-icons">thumb_up_alt</i>
 										{info.vote_count}
 									</span>
 								</div>
@@ -43,7 +51,9 @@ class Info extends PureComponent {
 							</div>
 						</div>
 					</div>
-				</div>);
+					{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider movies={this.props.similar} /> </React.Fragment>}
+				</div>
+			);
 	}
 
 	render() {
@@ -61,11 +71,13 @@ class Info extends PureComponent {
 
 const mapDispatchToProps = {
 	getMovieInfo,
+	getSimililar,
 	addToWishlist
 }
 
 const mapStateToProps = (state) => ({
 	info: state.movies.info,
+	similar: state.movies.similar,
 	wishlist: state.wishlist
 });
 
