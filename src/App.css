@@ -215,6 +215,7 @@ button {
   font-size: 12px;
   padding: 5px;
   display: inline-flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -314,9 +315,9 @@ button {
 }
 
 .card-lg {
-  position: absolute;
+  position: relative;
   width: 100vw;
-  min-height: 400px;
+  height: 20vh;
   display: flex;
   justify-content: center;
 }
@@ -324,8 +325,8 @@ button {
 .card-popup {
   background-color: #fff;
   position: relative;
-  width: 50vw;
-  bottom: 450px;
+  width: 65vw;
+  bottom: 60vh;
   border-radius: 10px;
   padding: 25px;
   min-height: 500px;

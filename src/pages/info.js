@@ -9,15 +9,30 @@ import Slider from './../components/slider';
 
 class Info extends PureComponent {
 
+	/*constructor(props){
+		super(props);
+		this.state = {
+			activeMovie : props.match.params.movieId
+		}
+	}*/
+
 	componentDidMount(){
 		this.props.getMovieInfo(this.props.match.params.movieId);
 		this.props.getSimililar(this.props.match.params.movieId);
 	}
 
-	static getDerivedStateFromProps(nextProps,state){
-		//nextProps.getMovieInfo(nextProps.match.params.movieId);
-		//nextProps.getSimililar(nextProps.match.params.movieId);
-	}
+	/*componentDidUpdate(){
+		console.log("Updated",this.state);
+		nextProps.getMovieInfo(nextProps.match.params.movieId);
+		nextProps.getSimililar(nextProps.match.params.movieId);
+	}*/
+
+	/*static getDerivedStateFromProps(nextProps,state){
+		console.log("Props -before",state.activeMovie);
+		return {
+			activeMovie : nextProps.match.params.movieId
+		}
+	}*/
 
 	getMovieDisplay(info){
 		return (<div className="main-content">
