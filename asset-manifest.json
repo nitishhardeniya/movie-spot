@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/movie-spot/static/css/main.bc460e36.chunk.css",
-    "main.js": "/movie-spot/static/js/main.02d1a498.chunk.js",
-    "main.js.map": "/movie-spot/static/js/main.02d1a498.chunk.js.map",
+    "main.css": "/movie-spot/static/css/main.e1558b7b.chunk.css",
+    "main.js": "/movie-spot/static/js/main.10f5c42c.chunk.js",
+    "main.js.map": "/movie-spot/static/js/main.10f5c42c.chunk.js.map",
     "runtime~main.js": "/movie-spot/static/js/runtime~main.7923435e.js",
     "runtime~main.js.map": "/movie-spot/static/js/runtime~main.7923435e.js.map",
-    "static/js/2.fd506e0b.chunk.js": "/movie-spot/static/js/2.fd506e0b.chunk.js",
-    "static/js/2.fd506e0b.chunk.js.map": "/movie-spot/static/js/2.fd506e0b.chunk.js.map",
+    "static/js/2.fc2de4a4.chunk.js": "/movie-spot/static/js/2.fc2de4a4.chunk.js",
+    "static/js/2.fc2de4a4.chunk.js.map": "/movie-spot/static/js/2.fc2de4a4.chunk.js.map",
     "index.html": "/movie-spot/index.html",
-    "precache-manifest.965212ca120e0d685c60055c362e2c38.js": "/movie-spot/precache-manifest.965212ca120e0d685c60055c362e2c38.js",
+    "precache-manifest.827f665fa4e2b8081ff95b099c4e3423.js": "/movie-spot/precache-manifest.827f665fa4e2b8081ff95b099c4e3423.js",
     "service-worker.js": "/movie-spot/service-worker.js",
-    "static/css/main.bc460e36.chunk.css.map": "/movie-spot/static/css/main.bc460e36.chunk.css.map"
+    "static/css/main.e1558b7b.chunk.css.map": "/movie-spot/static/css/main.e1558b7b.chunk.css.map"
   }
 }
