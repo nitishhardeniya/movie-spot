@@ -26,20 +26,20 @@ movieStore.subscribe(()=>{
 movieStore.dispatch(getMyWishlist());
 
 const Nav = () => {
-  return (<HashRouter basename={process.env.PUBLIC_URL}>
-      <Switch>
+  return (<Switch>
         <Route path='/' component={Showcase} exact/>
         <Route path='/category/:category' component={Category} />
         <Route path='/movie/:movieId' component={Info} />
-      </Switch>
-    </HashRouter>)
+      </Switch>)
 }
 
 function App() {
   return (
     <Provider store={movieStore} >
-      <Header />
-      <Nav />
+      <HashRouter basename={process.env.PUBLIC_URL}>
+        <Header />
+        <Nav />
+      </HashRouter>
     </Provider>
   );
 }
@@ -51,8 +51,10 @@ export default App;
   - D Refactoring of actions
   - Toaster notifications
   - D Wishlist to be connected to store
-  - SASS for styles
-  - Lazy load more movies on scroll - category page
+  - D SASS for styles
+  - Skeleton loader component
+  - D Similar movies - on info page
+  - D load more movies on scroll - category page
   - D Search a movie by name
   - Filter movies by year, rating
   - D Add a feature to add to wishlist a movie - LocalStorage

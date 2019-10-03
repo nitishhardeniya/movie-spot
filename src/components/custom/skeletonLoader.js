@@ -26,16 +26,12 @@ class SkeletonLoader extends Component {
 		switch(type){
 			case 'title' : 
 				return <TitleLoader />
-				break;
 			case 'content' :
 				return <ContentLoader />
-				break;
 			case 'description' :
 				return <DescriptionLoader />
-				break;
 			case 'card' :
 				return <CardLoader />
-				break;
 			default :
 				return <div>Loading...</div>
 
