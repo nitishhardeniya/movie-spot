@@ -21,11 +21,14 @@ class Info extends PureComponent {
 		this.props.getSimililar(this.props.match.params.movieId);
 	}
 
-	/*componentDidUpdate(){
-		console.log("Updated",this.state);
-		nextProps.getMovieInfo(nextProps.match.params.movieId);
-		nextProps.getSimililar(nextProps.match.params.movieId);
-	}*/
+	componentDidUpdate(prevProps){
+		// console.log("Updated",prevProps.match.params.movieId, this.props.match.params.movieId);
+		if(prevProps.match.params.movieId !== this.props.match.params.movieId){
+			this.props.getMovieInfo(this.props.match.params.movieId);
+			this.props.getSimililar(this.props.match.params.movieId);
+		}
+		
+	}
 
 	/*static getDerivedStateFromProps(nextProps,state){
 		console.log("Props -before",state.activeMovie);
@@ -72,7 +75,7 @@ class Info extends PureComponent {
 	}
 
 	render() {
-		//console.log("Updates!!",this.props.info);
+		// console.log("Updates!!",this.props.info);
 		const movieInfo = this.props.info;
 		return (
 			<React.Fragment>
