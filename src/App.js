@@ -5,6 +5,7 @@ import Header from './components/header';
 import Showcase from './pages/showcase';
 import Category from './pages/category';
 import Info from './pages/info';
+import { withTheme } from 'styled-components';
 
 //Router
 import {Switch,Route} from 'react-router-dom';
@@ -20,7 +21,7 @@ import { getMyWishlist } from './actions/wishlist';
 const movieStore = store;
 
 movieStore.subscribe(()=>{
-  console.log("Redux state tree: ",movieStore.getState());  
+  // console.log("Redux state tree: ",movieStore.getState());  
 });
 
 movieStore.dispatch(getMyWishlist());
@@ -44,7 +45,7 @@ function App() {
   );
 }
 
-export default App;
+export default withTheme(App);
 
 
 /*TODOS:
