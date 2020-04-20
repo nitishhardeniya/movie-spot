@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import styled ,{ withTheme } from 'styled-components';
 import { headerBackground } from './../themes';
 import { useTheme } from './../ThemeContext';
+import Switch from "react-switch";
 
 import Wishlist from './wishlist';
 //import { getMyWishlist } from './../actions/wishlist';
@@ -22,10 +23,29 @@ const Header = (props) => {
 
 	return (
 		<TopBar className="top-bar">
-			{props.location.pathname !== '/' && <i className="material-icons mi-color back-btn" onClick={() => goBack()}>keyboard_backspace</i>}
+			
+			{props.location.pathname !== '/' ? <div><i className="material-icons mi-color back-btn" onClick={() => goBack()}>keyboard_backspace</i></div> :
+				<div className="mode-switch">
+					<span className="font-grey">Dark Mode</span>
+					<Switch 
+						onChange={()=> toggle.toggleTheme()} 
+						checked={props.theme.mode === 'dark'}
+						onColor="#86d3ff"
+						onHandleColor="#2693e6"
+						handleDiameter={20}
+						uncheckedIcon={false}
+						checkedIcon={false}
+						boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+						activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+						height={15}
+						width={35}
+						className="react-switch"
+						id="material-switch"
+					/>
+				</div>
+			}
 			<div className="app-title"><span style={{fontWeight:'200'}}>Movie</span> Spot</div>
-			<div onClick={()=> toggle.toggleTheme() }> {props.theme.mode === 'light' ? 'Switch theme dark': 'Switch theme light'}</div>
-			<i className="material-icons mi-color wl-btn" title="My wishlist" onClick={() => toggleOpen(!opened)}>favorite</i>
+			<div><i className="material-icons mi-color wl-btn" title="My wishlist" onClick={() => toggleOpen(!opened)}>favorite</i></div>
 			{opened && <Wishlist data={props.wishlist}/>}
 		</TopBar>
 	);

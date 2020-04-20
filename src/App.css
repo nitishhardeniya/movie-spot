@@ -96,21 +96,29 @@ button {
   width: 100vw;
   position: fixed;
   z-index: 999;
-  flex-direction: column;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .app-title {
-  position: relative;
-  left: 50%;
+  /* position: relative;
+  left: 50%; */
   width: max-content;
   display: inline-block;
-  transform: translate(-50px);
+  /* transform: translate(-50px); */
   text-transform: uppercase;
   color: tomato;
   font-weight: bold;
   font-size: 22px;
+  line-height: 3.5;
+}
+
+.mode-switch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
 }
 
 .container-title {
@@ -224,8 +232,8 @@ button {
 }
 
 .wl-btn {
-  display: inline-block;
-  position: absolute;
+  display: inline-flex;
+  position: relative;
   right: 25px;
   top:25px;
   font-size:35px;
@@ -255,7 +263,7 @@ button {
 .mv-slider {
   display: flex;
   min-width: 100%;
-  min-height: 370px;
+  min-height: 290px;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   padding: 20px 0px;
@@ -265,7 +273,6 @@ button {
 .slider-tiles {
   display: inline-flex;
   position: relative;
-  min-width:240px;
   margin: 5px;
   flex-direction: column;
   cursor: pointer;
