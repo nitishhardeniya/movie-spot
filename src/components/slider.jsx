@@ -16,7 +16,7 @@ const Slider = (props)	=>	{
 			{movies.map(movie => {
 							return <div className="slider-tiles" key={movie.id} onClick={() => gotoMovie(movie.id)}>
 							<div className="tile-body">
-								<img src={IMG_THUMB+movie.poster_path} width={240} height={360} alt="no img"/>
+								<img src={IMG_THUMB+movie.poster_path} width={190} height={280} alt="no img"/>
 								{currentWL && currentWL.hasOwnProperty(movie.id) ? <i className="material-icons mi-color wishlist-icon">favorite</i> : <i className="material-icons mi-color wishlist-icon">favorite_border</i>}
 							</div>
 							<div className="tile-footer">

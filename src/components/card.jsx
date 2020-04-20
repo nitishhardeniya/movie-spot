@@ -14,7 +14,7 @@ const Card = (props)	=>	{
 	//console.log(props.cardMeta)
 	let {id,poster_path,title,release_date,vote_average} = props.cardMeta;
 	return (<div className="card" key={id} onClick={() => gotoMovie(id)} >
-				<img src={IMG_THUMB+poster_path} width={240} height={360} alt="no img"/>
+				<img src={IMG_THUMB+poster_path} width={190} height={280} alt="no img"/>
 				<div className="card-footer">
 					{/* Rating, users, add to wishlist*/}
 					<div className="card-row-sm">{title}</div>
