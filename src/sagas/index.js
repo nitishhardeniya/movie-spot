@@ -8,6 +8,11 @@ function* fetchMoviesByCategory(action){
 	yield put({type:'MOVIES_BY_CAT_RECEIVED',query:action.query,data:popular.results});
 }
 
+function* fetchTvSeriesByCategory(action){
+	const res =	yield fetch(BASE_URL+CONFIG[action.query.category]+'api_key='+API_KEY+'&page='+action.query.page).then((data)=>data.json()).catch(err => console.log(err));
+	yield put({type:'TV_SERIES_BY_CAT_RECEIVED',query:action.query,data:res.results});
+}
+
 function* fetchSearchRes(action){
 	const searchText = action.query;
 	const search = yield fetch(BASE_URL+SEARCH+'api_key='+API_KEY+'&query='+searchText).then((data)=>data.json()).catch(err => console.log(err));
@@ -16,13 +21,13 @@ function* fetchSearchRes(action){
 
 function* fetchMovieInfo(action){
 	const movieId = action.query;
-	const search = yield fetch(BASE_URL+'movie/'+movieId+'?api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
+	const search = yield fetch(BASE_URL+'/movie/'+movieId+'?api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
 	yield put({type:'INFO_RECIEVED',data:search});
 }
 
 function* fetchSimilarMovies(action){
 	const movieId = action.query;
-	const similar = yield fetch(BASE_URL+'movie/'+movieId+'/similar?api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
+	const similar = yield fetch(BASE_URL+'/movie/'+movieId+'/similar?api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
 	yield put({type:'SIMILAR_MOVIES_RECIEVED',data:similar.results});
 }
 
@@ -75,9 +80,10 @@ function* actionWatcher(){
 	yield takeLatest('GET_MOVIE_INFO',fetchMovieInfo);
 	yield takeLatest('GET_SIMILAR_MOVIES',fetchSimilarMovies);
 	yield takeLatest('GET_WISHLIST', fetchWishlist);
-	yield takeLatest('ADD_ITEM_WISHLIST',addItemToWishlist);
-	yield takeLatest('REMOVE_ITEM_WISHLIST',removeFromWishlist);
-	yield takeLatest('CLEAR_WISHLIST',clearWishlist);
+	yield takeLatest('ADD_ITEM_WISHLIST', addItemToWishlist);
+	yield takeLatest('REMOVE_ITEM_WISHLIST', removeFromWishlist);
+	yield takeLatest('CLEAR_WISHLIST', clearWishlist);
+	yield takeEvery('GET_TV_SERIES_BY_CAT', fetchTvSeriesByCategory)
 }
 
 export default function* rootSaga(){

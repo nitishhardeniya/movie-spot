@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from './../components/card';
 import { connect } from 'react-redux';
 import { getMoviesByCategory } from './../actions/movies';
+import { getTvSeriesByCategory } from './../actions/tv';
 import Titles from './../constants/titles';
 
 class Category extends Component {
@@ -16,14 +17,6 @@ class Category extends Component {
 		this.loadMoreMovies = this.loadMoreMovies.bind(this);
 	}
 
-	componentDidMount(){
-		let query = {
-			category : this.state.category.toUpperCase(),
-			page: this.state.page
-		}
-		//this.props.getMoviesByCategory(query);
-	}
-
 	static getDerivedStateFromProps(props, state) {
 		if(state.category){
 			return {
@@ -34,6 +27,7 @@ class Category extends Component {
 
 	loadMoreMovies(){
 		let {page} = this.state;
+		const searchType = this.props.history.location.state.type;
 		this.setState({
 			page : page + 1
 		},()=>{
@@ -41,7 +35,11 @@ class Category extends Component {
 				category : this.state.category.toUpperCase(),
 				page: this.state.page
 			}
-			this.props.getMoviesByCategory(query);	
+			if(searchType === 'movies') {
+				this.props.getMoviesByCategory(query);
+			} else {
+				this.props.getTvSeriesByCategory(query);
+			}
 		})
 	}
 
@@ -63,14 +61,18 @@ class Category extends Component {
 }
 
 const mapDispatchToProps = {
-	getMoviesByCategory
+	getMoviesByCategory,
+	getTvSeriesByCategory
 };
 
 const mapStateToProps = (state) =>({
 	now_playing: state.movies.NOW_PLAYING,
 	upcoming: state.movies.UPCOMING,
 	top_rated: state.movies.TOP_RATED,
-	popular: state.movies.POPULAR
+	popular: state.movies.POPULAR,
+	top_rated_tv: state.tv.TOP_RATED_TV,
+	latest_tv: state.tv.LATEST_TV,
+	popular_tv: state.tv.POPULAR_TV,
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Category);
