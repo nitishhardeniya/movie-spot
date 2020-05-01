@@ -10,6 +10,7 @@ module.exports = {
 	"POPULAR_TV" : "/tv/popular?",
 	"TOP_RATED_TV" : "/tv/top_rated?",
 	"SIMILAR" : "/similar?",
-	"SEARCH" : "/search/movie?",
+	"SEARCH" : "/search/multi?",
+	"SEARCH_MOVIE" : "/search/movie?",
 	"API_KEY" : "d6dadf6fd94626fca2e1aab19a6cf5e0"
 }
