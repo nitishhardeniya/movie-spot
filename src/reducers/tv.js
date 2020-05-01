@@ -13,10 +13,10 @@ const reducer = (state={},action) => {
 			return {...state,...newObj};
 		// case 'RESULTS_RECIEVED' :
 		// 	return {...state,results:action.data,loading:false};
-		// case 'INFO_RECIEVED' :
-		// 	return {...state,info:action.data,loading:false};
-		// case 'SIMILAR_MOVIES_RECIEVED' :
-		// 	return {...state,similar:action.data,loading:false};
+		case 'TV_SERIES_INFO_RECIEVED' :
+			return {...state,info:action.data,loading:false};
+		case 'SIMILAR_TV_SERIES_RECIEVED' :
+			return {...state,similar:action.data,loading:false};
 		default :
 			return state;
 	}

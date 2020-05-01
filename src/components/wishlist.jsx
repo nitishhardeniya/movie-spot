@@ -11,7 +11,7 @@ const WishList = (props) => {
 		{wishlistData && Object.keys(wishlistData).map((wlItem) => {
 			return (<div className="wl-box" key={wishlistData[wlItem].id}> 
 						<img className="wl-poster" alt="movie_img" src={IMG_THUMB+wishlistData[wlItem].poster_path} /> 
-						<div className="wl-title">{wishlistData[wlItem].name} </div>
+						<div className="wl-title">{wishlistData[wlItem].name || wishlistData[wlItem].title} </div>
 						<i className="material-icons mi-pointer" title="Remove" onClick={() => props.removeFromWishlist(wishlistData[wlItem])}>clear</i>
 					</div>)
 		})}

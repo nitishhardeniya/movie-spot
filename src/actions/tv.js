@@ -3,12 +3,12 @@ export const getTvSeriesByCategory = (category) => ({
 	query : category
 });
 
-export const getTvSeriesInfo = (movieId) => ({
+export const getTvSeriesInfo = (tvId) => ({
     type: 'GET_TV_SERIES_INFO',
-    query: movieId
+    query: tvId
 });
 
-export const getSimililarTvSeries = (movieId) => ({
-	type : 'GET_SIMILAR_TV',
-	query : movieId
+export const getSimililarTvSeries = (tvId) => ({
+	type : 'GET_SIMILAR_TV_SERIES',
+	query : tvId
 })

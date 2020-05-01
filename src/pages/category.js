@@ -17,6 +17,23 @@ class Category extends Component {
 		this.loadMoreMovies = this.loadMoreMovies.bind(this);
 	}
 
+	componentDidMount() {
+		// check if data is there inside store
+		const mvData = this.props[this.props.match.params.category];
+		if(!mvData || mvData.length === 0){
+			const searchType = this.props.match.params.type;
+			let query = {
+				category : this.state.category.toUpperCase(),
+				page: this.state.page
+			}
+			if(searchType === 'movie') {
+				this.props.getMoviesByCategory(query);
+			} else {
+				this.props.getTvSeriesByCategory(query);
+			}
+		}
+	}
+
 	static getDerivedStateFromProps(props, state) {
 		if(state.category){
 			return {
@@ -27,7 +44,7 @@ class Category extends Component {
 
 	loadMoreMovies(){
 		let {page} = this.state;
-		const searchType = this.props.history.location.state.type;
+		const searchType = this.props.match.params.type;
 		this.setState({
 			page : page + 1
 		},()=>{
@@ -44,13 +61,13 @@ class Category extends Component {
 	}
 
 	render() {
-	
+		const type = this.props.match.params ? this.props.match.params.type : "movie";
 		return (
 			<React.Fragment>
 				<div className="container-title">{Titles[this.state.category.toUpperCase()]}</div>
 				<div className="container">
 					{this.state.allMovies && this.state.allMovies.map((movie)=>{
-						return (<Card key={movie.id} cardMeta={movie} />)
+						return (<Card key={movie.id} cardMeta={movie} type={type} />)
 					})}
 
 					<button className="btn-primary" onClick={this.loadMoreMovies}>+ Load more </button>
