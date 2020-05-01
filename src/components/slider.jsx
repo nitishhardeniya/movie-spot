@@ -4,23 +4,28 @@ import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 
 const Slider = (props)	=>	{
-	let {movies} = props;
+	let { records, type } = props;
 
-	const gotoMovie = (movieId) => {
-		props.history.push('/movie/'+movieId)
+	const viewDetails = (id, mediaType) => {
+		
+		if((type || mediaType) && (mediaType || type) === 'movie') {
+			props.history.push('/movie/'+id);
+		} else {
+			props.history.push('/tv/'+id);
+		}
 	}
 
 	const currentWL = props.wishlist;
 	
 	return (<div className="mv-slider">
-			{movies.map(movie => {
-							return <div className="slider-tiles" key={movie.id} onClick={() => gotoMovie(movie.id)}>
+			{records && records.map(record => {
+							return <div className="slider-tiles" key={record.id} onClick={() => viewDetails(record.id, record.media_type)}>
 							<div className="tile-body">
-								<img src={IMG_THUMB+movie.poster_path} width={190} height={280} alt="no img"/>
-								{currentWL && currentWL.hasOwnProperty(movie.id) ? <i className="material-icons mi-color wishlist-icon">favorite</i> : <i className="material-icons mi-color wishlist-icon">favorite_border</i>}
+								<img src={IMG_THUMB+record.poster_path} width={190} height={290} alt="no img"/>
+								{currentWL && currentWL.hasOwnProperty(record.id) ? <i className="material-icons mi-color wishlist-icon">favorite</i> : <i className="material-icons mi-color wishlist-icon">favorite_border</i>}
 							</div>
 							<div className="tile-footer">
-								<div>{movie.title}</div>
+								<div>{record.title || record.name}</div>
 							</div>
 							
 							</div>

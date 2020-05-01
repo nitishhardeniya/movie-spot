@@ -44,20 +44,20 @@ class Info extends PureComponent {
 						<div className="card-popup">
 							<div className="popup-title">{info.title}</div>
 							<div className="card-row">{info.genres.map(item => <div key={item.id} className="genre">{item.name}</div>)} </div>
-							<div className="card-row font-grey" style={{marginLeft:'5px'}}>{moment(info.release_date).format('dddd, MMMM D YYYY')}</div>
+							<div className="card-row font-grey">{moment(info.release_date).format('dddd, MMMM D YYYY')}</div>
 							<p className="card-row desc">{info.overview}</p>
 							<div className="card-row">
 								<div className="card-column-2">
-									<span className="card-body-title">
+									<span className="card-column-content">
 										<i className="material-icons">star</i>
-										{info.vote_average}
+										{info.vote_average} ({info.vote_count})
 									</span>
 								</div>
 								<div className="card-column-2">
 									<span className="card-body-title">
-										<i className="material-icons">thumb_up_alt</i>
-										{info.vote_count}
+										Runtime
 									</span>
+                                    <div className="card-column-content">{Math.floor(info.runtime / 60) + 'hr ' + info.runtime % 60 + 'min'}</div>
 								</div>
 							</div>
 							<div className="card-row">
@@ -69,7 +69,7 @@ class Info extends PureComponent {
 							</div>
 						</div>
 					</div>
-					{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider movies={this.props.similar} /> </React.Fragment>}
+					{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider records={this.props.similar} type="movie" /> </React.Fragment>}
 				</div>
 			);
 	}

@@ -145,9 +145,8 @@ button {
 
 .card {
   display: inline-block;
-  min-height: 400px;
-  width:250px;
-  margin: 40px;
+  width: 190px;
+  margin: 20px;
   background-color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -173,6 +172,10 @@ button {
 
 .card-body-title {
   display: inline-block;
+  font-size: 12px;
+}
+
+.card-column-content {
   font-size: 18px;
 }
 
@@ -263,7 +266,6 @@ button {
 .mv-slider {
   display: flex;
   min-width: 100%;
-  min-height: 290px;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   padding: 20px 0px;
@@ -276,6 +278,8 @@ button {
   margin: 5px;
   flex-direction: column;
   cursor: pointer;
+  width: 190px;
+  height: 290px;
 }
 
 .slider-tiles:hover{
@@ -292,9 +296,9 @@ button {
 .tile-footer {
   padding: 5px;
   position: absolute;
-  bottom: 4px;
+  bottom: 0px;
   background-color: rgb(0,0,0,0.35) !important;
-  width: 96%;
+  width: 94%;
   font-size: 18px;
   color: #fff;
   height: 50px;
@@ -333,7 +337,6 @@ button {
 .card-lg {
   position: relative;
   width: 100vw;
-  height: 20vh;
   display: flex;
   justify-content: center;
 }
@@ -351,7 +354,6 @@ button {
 
 .popup-title {
   height: 50px;
-  padding: 5px;
   font-size: 26px;
   color:tomato;
 }
@@ -359,16 +361,16 @@ button {
 .genre {
   display: inline-block;
   height: 15px;
-  padding: 5px;
+  padding: 3px 10px;
   background-color: tomato;
   color:#fff;
   border-radius: 5px;
-  margin: 5px;
   font-size: 12px;
+  margin-right: 5px;
 }
 
 .desc {
-  padding: 10px 5px;
+  padding: 10px 0px;
   color: grey;
   font-size: 14px;
 }
@@ -383,4 +385,18 @@ button {
   border: 1px solid green;
 }*/
 
+
+.season-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.season-item {
+  display: inline-flex;
+  width: 165px;
+  height: 200px;
+  margin: 0px 20px 30px 0px;
+  background-size: cover;
+  border-radius: 10px;
+}
 

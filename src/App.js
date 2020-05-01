@@ -5,6 +5,7 @@ import Header from './components/header';
 import Showcase from './pages/showcase';
 import Category from './pages/category';
 import Info from './pages/info';
+import TVInfo from './pages/tvinfo';
 import { withTheme } from 'styled-components';
 
 //Router
@@ -29,8 +30,9 @@ movieStore.dispatch(getMyWishlist());
 const Nav = () => {
   return (<Switch>
         <Route path='/' component={Showcase} exact/>
-        <Route path='/category/:category' component={Category} />
+        <Route path='/category/:type/:category' component={Category} />
         <Route path='/movie/:movieId' component={Info} />
+        <Route path='/tv/:tvId' component={TVInfo} />
       </Switch>)
 }
 
