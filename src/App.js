@@ -18,6 +18,7 @@ import store from './store';
 
 //Default actions
 import { getMyWishlist } from './actions/wishlist';
+import { createGuestSession } from './actions/authentication';
 
 const movieStore = store;
 
@@ -26,6 +27,7 @@ movieStore.subscribe(()=>{
 });
 
 movieStore.dispatch(getMyWishlist());
+movieStore.dispatch(createGuestSession());
 
 const Nav = () => {
   return (<Switch>

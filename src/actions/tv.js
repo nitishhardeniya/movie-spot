@@ -11,4 +11,9 @@ export const getTvSeriesInfo = (tvId) => ({
 export const getSimililarTvSeries = (tvId) => ({
 	type : 'GET_SIMILAR_TV_SERIES',
 	query : tvId
-})
+});
+
+export const rateTV = (payload) => ({
+	type: "RATE_TV",
+	payload 
+});

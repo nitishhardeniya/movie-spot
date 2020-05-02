@@ -12,5 +12,6 @@ module.exports = {
 	"SIMILAR" : "/similar?",
 	"SEARCH" : "/search/multi?",
 	"SEARCH_MOVIE" : "/search/movie?",
-	"API_KEY" : "d6dadf6fd94626fca2e1aab19a6cf5e0"
+	"API_KEY" : "d6dadf6fd94626fca2e1aab19a6cf5e0",
+	"GUEST_SESSION" : "/authentication/guest_session/new?",
 }

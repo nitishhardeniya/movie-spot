@@ -11,4 +11,9 @@ export const getMovieInfo = (movieId) => ({
 export const getSimililar = (movieId) => ({
 	type : 'GET_SIMILAR_MOVIES',
 	query : movieId
-})
+});
+
+export const rateMovie = (payload) => ({
+	type: "RATE_MOVIE",
+	payload 
+});

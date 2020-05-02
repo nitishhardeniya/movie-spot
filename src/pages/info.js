@@ -1,20 +1,20 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getMovieInfo ,getSimililar } from './../actions/movies';
+import { getMovieInfo, getSimililar, rateMovie } from './../actions/movies';
 import { addToWishlist } from './../actions/wishlist';
 import {IMG_ORIGINAL} from './../constants/config';
 import moment from 'moment';
-
+import Rating from 'react-rating';
+import BlankStar from '../assets/blank_star.png';
+import FilledStar from '../assets/filled_star.png';
 import Slider from './../components/slider';
 
 class Info extends PureComponent {
 
-	/*constructor(props){
+	constructor(props){
 		super(props);
-		this.state = {
-			activeMovie : props.match.params.movieId
-		}
-	}*/
+		this.rateMovie = this.rateMovie.bind(this);
+	}
 
 	componentDidMount(){
 		this.props.getMovieInfo(this.props.match.params.movieId);
@@ -28,6 +28,15 @@ class Info extends PureComponent {
 			this.props.getSimililar(this.props.match.params.movieId);
 		}
 		
+	}
+
+	rateMovie(value) {
+		const ratePayload = {
+			id: this.props.match.params.movieId,
+			value,
+			guest_session_id: this.props.guest.guest_session_id
+		}
+		this.props.rateMovie(ratePayload);
 	}
 
 	/*static getDerivedStateFromProps(nextProps,state){
@@ -60,6 +69,17 @@ class Info extends PureComponent {
                                     <div className="card-column-content">{Math.floor(info.runtime / 60) + 'hr ' + info.runtime % 60 + 'min'}</div>
 								</div>
 							</div>
+							<div className="card-row pad-b-10">
+								<Rating 
+									start={0}
+									stop={10}
+									step={2}
+									initialRating={info.vote_average}
+									emptySymbol={<img src={BlankStar} className="icon" />}
+  									fullSymbol={<img src={FilledStar} className="icon" />}
+									onChange={this.rateMovie}
+								/>
+							</div>
 							<div className="card-row">
 								{this.props.wishlist && this.props.wishlist.hasOwnProperty(info.id) ? <button className="btn-primary">
 									<i className="material-icons">favorite</i>
@@ -90,13 +110,15 @@ class Info extends PureComponent {
 const mapDispatchToProps = {
 	getMovieInfo,
 	getSimililar,
-	addToWishlist
+	addToWishlist,
+	rateMovie
 }
 
 const mapStateToProps = (state) => ({
 	info: state.movies.info,
 	similar: state.movies.similar,
-	wishlist: state.wishlist
+	wishlist: state.wishlist,
+	guest: state.authentication.guestSession,
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Info);

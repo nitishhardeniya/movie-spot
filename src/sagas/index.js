@@ -1,5 +1,5 @@
 import {put, takeLatest, takeEvery, all} from 'redux-saga/effects';
-import { BASE_URL, SEARCH, API_KEY } from './../constants/config';
+import { BASE_URL, SEARCH, API_KEY,GUEST_SESSION } from './../constants/config';
 import CONFIG from './../constants/config';
 import LS from './../helpers/localDB';
 
@@ -86,6 +86,30 @@ function* clearWishlist(){
 	}
 }
 
+function* createGuestSession() {
+	const session = yield fetch(BASE_URL+GUEST_SESSION+'api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
+	yield put({type:'GUEST_SESSION_CREATED',data:session});
+}
+
+function* rateMovie(action) {
+	const payload = action.payload;
+	const rate = yield fetch(BASE_URL+'/movie/'+payload.id+'/rating?'+'api_key='+API_KEY+'&guest_session_id='+payload.guest_session_id,{
+		method: 'POST', // or 'PUT'
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			value: payload.value
+		})
+	}).then((data)=>data.json()).catch(err => console.log(err));
+	// yield put({type:'GUEST_SESSION_CREATED',data:session});
+}
+
+function* rateTV(payload) {
+	// const rate = yield fetch(BASE_URL+'/tv/'+payload.id+'/rating?'+'api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
+	// yield put({type:'GUEST_SESSION_CREATED',data:session});
+}
+
 function* actionWatcher(){
 	yield takeEvery('GET_MOVIES_BY_CAT',fetchMoviesByCategory);
 	yield takeLatest('GET_SEARCH',fetchSearchRes);
@@ -97,7 +121,10 @@ function* actionWatcher(){
 	yield takeLatest('ADD_ITEM_WISHLIST', addItemToWishlist);
 	yield takeLatest('REMOVE_ITEM_WISHLIST', removeFromWishlist);
 	yield takeLatest('CLEAR_WISHLIST', clearWishlist);
-	yield takeEvery('GET_TV_SERIES_BY_CAT', fetchTvSeriesByCategory)
+	yield takeEvery('GET_TV_SERIES_BY_CAT', fetchTvSeriesByCategory);
+	yield takeLatest('CREATE_GUEST_SESSION', createGuestSession);
+	yield takeLatest('RATE_MOVIE', rateMovie);
+	yield takeLatest('RATE_TV', rateTV);
 }
 
 export default function* rootSaga(){
