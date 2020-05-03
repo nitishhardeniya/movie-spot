@@ -1,23 +1,24 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getMovieInfo ,getSimililar } from './../actions/movies';
+import { getMovieInfo, getSimililar, rateMovie, getVideos } from './../actions/movies';
 import { addToWishlist } from './../actions/wishlist';
 import {IMG_ORIGINAL} from './../constants/config';
 import moment from 'moment';
-
+import Rating from 'react-rating';
+import BlankStar from '../assets/blank_star.png';
+import FilledStar from '../assets/filled_star.png';
 import Slider from './../components/slider';
 
 class Info extends PureComponent {
 
-	/*constructor(props){
+	constructor(props){
 		super(props);
-		this.state = {
-			activeMovie : props.match.params.movieId
-		}
-	}*/
+		this.rateMovie = this.rateMovie.bind(this);
+	}
 
 	componentDidMount(){
 		this.props.getMovieInfo(this.props.match.params.movieId);
+		this.props.getVideos(this.props.match.params.movieId);
 		this.props.getSimililar(this.props.match.params.movieId);
 	}
 
@@ -25,9 +26,19 @@ class Info extends PureComponent {
 		// console.log("Updated",prevProps.match.params.movieId, this.props.match.params.movieId);
 		if(prevProps.match.params.movieId !== this.props.match.params.movieId){
 			this.props.getMovieInfo(this.props.match.params.movieId);
+			this.props.getVideos(this.props.match.params.movieId);
 			this.props.getSimililar(this.props.match.params.movieId);
 		}
 		
+	}
+
+	rateMovie(value) {
+		const ratePayload = {
+			id: this.props.match.params.movieId,
+			value,
+			guest_session_id: this.props.guest.guest_session_id
+		}
+		this.props.rateMovie(ratePayload);
 	}
 
 	/*static getDerivedStateFromProps(nextProps,state){
@@ -60,6 +71,33 @@ class Info extends PureComponent {
                                     <div className="card-column-content">{Math.floor(info.runtime / 60) + 'hr ' + info.runtime % 60 + 'min'}</div>
 								</div>
 							</div>
+							
+							<div className="card-row pad-b-10">
+								<Rating 
+									start={0}
+									stop={10}
+									step={2}
+									initialRating={info.vote_average}
+									emptySymbol={<img src={BlankStar} className="icon" />}
+  									fullSymbol={<img src={FilledStar} className="icon" />}
+									onChange={this.rateMovie}
+								/>
+							</div>
+
+							<div className="card-row pad-b-10">
+								<div className="cat-header">Videos : </div>
+								{this.props.videos && this.props.videos.map(video => (<div className="video-item">
+									<iframe src={`https://www.youtube.com/embed/${video.key}`}
+										frameBorder='0'
+										allow='autoplay; encrypted-media'
+										allowFullScreen
+										title='movie video'
+										width={250}
+										height={150}
+									/>
+								</div>))}
+							</div>
+
 							<div className="card-row">
 								{this.props.wishlist && this.props.wishlist.hasOwnProperty(info.id) ? <button className="btn-primary">
 									<i className="material-icons">favorite</i>
@@ -67,9 +105,9 @@ class Info extends PureComponent {
 								</button> : 
 								<button className="btn-secondary" onClick={()=>{this.props.addToWishlist(info)}}>Add to wishlist</button>}
 							</div>
+							{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider records={this.props.similar} type="movie" /> </React.Fragment>}
 						</div>
 					</div>
-					{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider records={this.props.similar} type="movie" /> </React.Fragment>}
 				</div>
 			);
 	}
@@ -90,13 +128,17 @@ class Info extends PureComponent {
 const mapDispatchToProps = {
 	getMovieInfo,
 	getSimililar,
-	addToWishlist
+	addToWishlist,
+	rateMovie,
+	getVideos
 }
 
 const mapStateToProps = (state) => ({
 	info: state.movies.info,
 	similar: state.movies.similar,
-	wishlist: state.wishlist
+	videos: state.movies.videos,
+	wishlist: state.wishlist,
+	guest: state.authentication.guestSession,
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Info);

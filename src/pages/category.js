@@ -52,7 +52,7 @@ class Category extends Component {
 				category : this.state.category.toUpperCase(),
 				page: this.state.page
 			}
-			if(searchType === 'movies') {
+			if(searchType === 'movie') {
 				this.props.getMoviesByCategory(query);
 			} else {
 				this.props.getTvSeriesByCategory(query);

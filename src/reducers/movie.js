@@ -12,11 +12,13 @@ const reducer = (state={},action) => {
 			newObj[action.query.category] = state[action.query.category] ? [...state[action.query.category],...action.data] :  action.data;	
 			return {...state,...newObj,loading:false};
 		case 'RESULTS_RECIEVED' :
-			return {...state,results:action.data,loading:false};
+			return {...state,results: action.data,loading:false};
 		case 'INFO_RECIEVED' :
-			return {...state,info:action.data,loading:false};
+			return {...state,info: action.data,loading:false};
 		case 'SIMILAR_MOVIES_RECIEVED' :
-			return {...state,similar:action.data,loading:false};
+			return {...state,similar: action.data,loading:false};
+		case 'MOVIE_VIDEOS_RECEIVED' :
+			return {...state, videos: action.data}
 		default :
 			return state;
 	}
