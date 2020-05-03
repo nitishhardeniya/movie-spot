@@ -69,6 +69,7 @@ class Info extends PureComponent {
                                     <div className="card-column-content">{Math.floor(info.runtime / 60) + 'hr ' + info.runtime % 60 + 'min'}</div>
 								</div>
 							</div>
+							
 							<div className="card-row pad-b-10">
 								<Rating 
 									start={0}
@@ -87,9 +88,9 @@ class Info extends PureComponent {
 								</button> : 
 								<button className="btn-secondary" onClick={()=>{this.props.addToWishlist(info)}}>Add to wishlist</button>}
 							</div>
+							{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider records={this.props.similar} type="movie" /> </React.Fragment>}
 						</div>
 					</div>
-					{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider records={this.props.similar} type="movie" /> </React.Fragment>}
 				</div>
 			);
 	}

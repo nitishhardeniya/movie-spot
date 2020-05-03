@@ -105,8 +105,17 @@ function* rateMovie(action) {
 	// yield put({type:'GUEST_SESSION_CREATED',data:session});
 }
 
-function* rateTV(payload) {
-	// const rate = yield fetch(BASE_URL+'/tv/'+payload.id+'/rating?'+'api_key='+API_KEY).then((data)=>data.json()).catch(err => console.log(err));
+function* rateTV(action) {
+	const payload = action.payload;
+	const rate = yield fetch(BASE_URL+'/tv/'+payload.id+'/rating?'+'api_key='+API_KEY+'&guest_session_id='+payload.guest_session_id,{
+		method: 'POST', // or 'PUT'
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			value: payload.value
+		})
+	}).then((data)=>data.json()).catch(err => console.log(err));
 	// yield put({type:'GUEST_SESSION_CREATED',data:session});
 }
 
