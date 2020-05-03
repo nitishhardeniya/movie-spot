@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getMovieInfo, getSimililar, rateMovie } from './../actions/movies';
+import { getMovieInfo, getSimililar, rateMovie, getVideos } from './../actions/movies';
 import { addToWishlist } from './../actions/wishlist';
 import {IMG_ORIGINAL} from './../constants/config';
 import moment from 'moment';
@@ -18,6 +18,7 @@ class Info extends PureComponent {
 
 	componentDidMount(){
 		this.props.getMovieInfo(this.props.match.params.movieId);
+		this.props.getVideos(this.props.match.params.movieId);
 		this.props.getSimililar(this.props.match.params.movieId);
 	}
 
@@ -25,6 +26,7 @@ class Info extends PureComponent {
 		// console.log("Updated",prevProps.match.params.movieId, this.props.match.params.movieId);
 		if(prevProps.match.params.movieId !== this.props.match.params.movieId){
 			this.props.getMovieInfo(this.props.match.params.movieId);
+			this.props.getVideos(this.props.match.params.movieId);
 			this.props.getSimililar(this.props.match.params.movieId);
 		}
 		
@@ -81,6 +83,21 @@ class Info extends PureComponent {
 									onChange={this.rateMovie}
 								/>
 							</div>
+
+							<div className="card-row pad-b-10">
+								<div className="cat-header">Videos : </div>
+								{this.props.videos && this.props.videos.map(video => (<div className="video-item">
+									<iframe src={`https://www.youtube.com/embed/${video.key}`}
+										frameBorder='0'
+										allow='autoplay; encrypted-media'
+										allowFullScreen
+										title='movie video'
+										width={250}
+										height={150}
+									/>
+								</div>))}
+							</div>
+
 							<div className="card-row">
 								{this.props.wishlist && this.props.wishlist.hasOwnProperty(info.id) ? <button className="btn-primary">
 									<i className="material-icons">favorite</i>
@@ -112,12 +129,14 @@ const mapDispatchToProps = {
 	getMovieInfo,
 	getSimililar,
 	addToWishlist,
-	rateMovie
+	rateMovie,
+	getVideos
 }
 
 const mapStateToProps = (state) => ({
 	info: state.movies.info,
 	similar: state.movies.similar,
+	videos: state.movies.videos,
 	wishlist: state.wishlist,
 	guest: state.authentication.guestSession,
 });

@@ -17,3 +17,9 @@ export const rateTV = (payload) => ({
 	type: "RATE_TV",
 	payload 
 });
+
+
+export const getVideos = (tvId) => ({
+	type: "GET_VIDEOS_TV",
+	query: tvId 
+});

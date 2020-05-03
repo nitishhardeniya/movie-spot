@@ -17,3 +17,8 @@ export const rateMovie = (payload) => ({
 	type: "RATE_MOVIE",
 	payload 
 });
+
+export const getVideos = (movieId) => ({
+	type: "GET_VIDEOS_MOVIE",
+	query: movieId 
+});

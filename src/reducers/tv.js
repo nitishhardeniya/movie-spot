@@ -17,6 +17,8 @@ const reducer = (state={},action) => {
 			return {...state,info:action.data,loading:false};
 		case 'SIMILAR_TV_SERIES_RECIEVED' :
 			return {...state,similar:action.data,loading:false};
+		case 'TV_VIDEOS_RECEIVED' :
+			return {...state, videos: action.data}				
 		default :
 			return state;
 	}

@@ -177,6 +177,7 @@ button {
 
 .card-column-content {
   font-size: 18px;
+  padding-top: 5px;
 }
 
 .card-column-2 {
@@ -197,6 +198,11 @@ button {
   min-height: 20px;
   font-size: 12px;
   margin : 2px 0px;
+}
+
+.video-item {
+  display: inline-flex;
+  margin: 5px 15px 10px 0px;
 }
 
 .wishlist-icon {

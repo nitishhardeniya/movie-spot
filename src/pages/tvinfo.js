@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getTvSeriesInfo ,getSimililarTvSeries, rateTV } from './../actions/tv';
+import { getTvSeriesInfo ,getSimililarTvSeries, rateTV, getVideos } from './../actions/tv';
 import { addToWishlist } from './../actions/wishlist';
 import {IMG_ORIGINAL} from './../constants/config';
 import moment from 'moment';
@@ -19,12 +19,14 @@ class TVInfo extends PureComponent {
 
 	componentDidMount(){
 		this.props.getTvSeriesInfo(this.props.match.params.tvId);
+		this.props.getVideos(this.props.match.params.tvId);
 		this.props.getSimililarTvSeries(this.props.match.params.tvId);
 	}
 
 	componentDidUpdate(prevProps){
 		if(prevProps.match.params.tvId !== this.props.match.params.tvId){
 			this.props.getTvSeriesInfo(this.props.match.params.tvId);
+			this.props.getVideos(this.props.match.params.tvId);
 			this.props.getSimililarTvSeries(this.props.match.params.tvId);
 		}
 		
@@ -78,11 +80,6 @@ class TVInfo extends PureComponent {
 								</div>
 							</div>
 
-                            <div className="season-list">
-                                {info.seasons && info.seasons.map(season => (
-                                    <div className="season-item" style={{ backgroundImage: `url(${IMG_ORIGINAL+season.poster_path})`}}></div>
-                                ))}
-                            </div>
 							<div className="card-row pad-b-10">
 								<Rating 
 									start={0}
@@ -94,6 +91,30 @@ class TVInfo extends PureComponent {
 									onChange={this.rateTV}
 								/>
 							</div>
+
+							<div className="card-row pad-b-10">
+								<div className="cat-header">Videos : </div>
+								{this.props.videos && this.props.videos.map(video => (<div className="video-item">
+									<iframe src={`https://www.youtube.com/embed/${video.key}`}
+										frameBorder='0'
+										allow='autoplay; encrypted-media'
+										allowFullScreen
+										title='movie video'
+										width={250}
+										height={150}
+									/>
+								</div>))}
+							</div>
+
+							<div className="card-row pad-b-10">
+								<div className="cat-header">Seasons : </div>
+								<div className="season-list">
+									{info.seasons && info.seasons.map(season => (
+										<div className="season-item" style={{ backgroundImage: `url(${IMG_ORIGINAL+season.poster_path})`}}></div>
+									))}
+								</div>
+							</div>
+							
 							<div className="card-row">
 								{this.props.wishlist && this.props.wishlist.hasOwnProperty(info.id) ? <button className="btn-primary">
 									<i className="material-icons">favorite</i>
@@ -127,12 +148,14 @@ const mapDispatchToProps = {
     getTvSeriesInfo,
     getSimililarTvSeries,
 	addToWishlist,
-	rateTV
+	rateTV,
+	getVideos
 }
 
 const mapStateToProps = (state) => ({
 	info: state.tv.info,
 	similar: state.tv.similar,
+	videos: state.tv.videos,
 	wishlist: state.wishlist,
 	guest: state.authentication.guestSession,
 });
