@@ -123,7 +123,7 @@ class TVInfo extends PureComponent {
 								<button className="btn-secondary" onClick={()=>{this.props.addToWishlist(info)}}>Add to wishlist</button>}
 							</div>
 
-							{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar TV shows : </div> <Slider records={this.props.similar} type="tv"/> </React.Fragment>}
+							{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar TV shows : </div> <Slider records={this.props.similar} type="tv" size="small"/> </React.Fragment>}
 						</div>
 					</div>
 					

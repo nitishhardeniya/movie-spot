@@ -105,7 +105,7 @@ class Info extends PureComponent {
 								</button> : 
 								<button className="btn-secondary" onClick={()=>{this.props.addToWishlist(info)}}>Add to wishlist</button>}
 							</div>
-							{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider records={this.props.similar} type="movie" /> </React.Fragment>}
+							{this.props.similar && this.props.similar.length >0 && <React.Fragment> <div className="cat-header">Similar movies : </div> <Slider records={this.props.similar} type="movie" size="small" /> </React.Fragment>}
 						</div>
 					</div>
 				</div>
