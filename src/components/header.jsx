@@ -5,8 +5,8 @@ import styled ,{ withTheme } from 'styled-components';
 import { headerBackground } from './../themes';
 import { useTheme } from './../ThemeContext';
 import Switch from "react-switch";
-
 import Wishlist from './wishlist';
+import {Search} from '../components/filters';
 //import { getMyWishlist } from './../actions/wishlist';
 
 const Header = (props) => {
@@ -45,6 +45,7 @@ const Header = (props) => {
 				</div>
 			}
 			<div className="app-title"><span style={{fontWeight:'200'}}>Movie</span> Spot</div>
+			<Search />
 			<div><i className="material-icons mi-color wl-btn" title="My wishlist" onClick={() => toggleOpen(!opened)}>favorite</i></div>
 			{opened && <Wishlist data={props.wishlist}/>}
 		</TopBar>

@@ -7,6 +7,21 @@ import ContentLoader from './content';
 import DescriptionLoader from './description';
 import CardLoader from './card';
 
+const tileSizes = {
+	small: {
+		width: '150px',
+		height: '220px'
+	},
+	medium: {
+		width: '180px',
+		height: '280px'
+	},
+	large: {
+		width: '210px',
+		height: '320px'
+	}
+};
+
 class SkeletonLoader extends Component {
 	
 	constructor(props){
@@ -22,7 +37,8 @@ class SkeletonLoader extends Component {
 	}
 
 	buildSkeleton(type){
-
+		console.log(tileSizes[this.props.size])
+		const { width, height } = tileSizes && tileSizes[this.props.size];
 		switch(type){
 			case 'title' : 
 				return <TitleLoader />
@@ -31,7 +47,7 @@ class SkeletonLoader extends Component {
 			case 'description' :
 				return <DescriptionLoader />
 			case 'card' :
-				return <CardLoader />
+				return <CardLoader width={width} height={height} />
 			default :
 				return <div>Loading...</div>
 
@@ -56,6 +72,9 @@ class SkeletonLoader extends Component {
 
 export default SkeletonLoader;
 
+SkeletonLoader.defaultProps = {
+	size: 'small',
+}
 
 /*
 This component will take 3 arguments
