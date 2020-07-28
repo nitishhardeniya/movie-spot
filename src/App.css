@@ -19,6 +19,24 @@
   color: white;
 }
 
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0px;
+  left:0;
+  right:0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0px 2px 2px 4px rgba(45,56,64,0.1);
+}
+
+.bottomnav-item {
+  display: inline-flex;
+  padding: 20px;
+  cursor: pointer;
+}
+
 .App-link {
   color: #61dafb;
 }

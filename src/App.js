@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import Header from './components/header';
+import Header from './components/Layout/header';
+import BottomBar from './components/Layout/bottombar';
 import Showcase from './pages/showcase';
 import Category from './pages/category';
 import Info from './pages/info';
@@ -19,6 +20,8 @@ import store from './store';
 //Default actions
 import { getMyWishlist } from './actions/wishlist';
 import { createGuestSession } from './actions/authentication';
+import Wishlist from './components/wishlist';
+import MoreNav from './components/more';
 
 const movieStore = store;
 
@@ -35,14 +38,25 @@ const Nav = () => {
         <Route path='/category/:type/:category' component={Category} />
         <Route path='/movie/:movieId' component={Info} />
         <Route path='/tv/:tvId' component={TVInfo} />
+        <Route path='/wishlist' component={Wishlist} />
+        <Route path='/more-nav' component={MoreNav} />
       </Switch>)
 }
 
 function App() {
+  const [screenWidth, updateWindowDimensions] = useState(window.screen.width);
+
+  useEffect(() => {
+    window.addEventListener("resize", (event) => {
+      updateWindowDimensions(window.screen.width);
+    });
+  }, []);
+  const isMobile = screenWidth <= 480;
+
   return (
     <Provider store={movieStore} >
       <HashRouter basename={process.env.PUBLIC_URL}>
-        <Header />
+        {!isMobile ? <Header /> : <BottomBar />}
         <Nav />
       </HashRouter>
     </Provider>

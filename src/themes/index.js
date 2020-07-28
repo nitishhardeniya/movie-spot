@@ -23,4 +23,6 @@ export const buttonTextColor = theme('mode', {
 export const headerBackground = theme('mode', {
     light: '#f5f5f5',
     dark: '#4a4a4a'
-})
+});
+
+export const bottombarBackground = headerBackground;
