@@ -23,8 +23,10 @@ const Header = (props) => {
 
 	return (
 		<TopBar className="top-bar">
-			
+			<div className="app-title"><span style={{fontWeight:'200'}}>Movie</span> Spot</div>
+			<div className="header-filler"></div>
 			{props.location.pathname !== '/' ? <div><i className="material-icons mi-color back-btn" onClick={() => goBack()}>keyboard_backspace</i></div> :
+				<><Search />
 				<div className="mode-switch">
 					<span className="font-grey">Dark Mode</span>
 					<Switch 
@@ -42,10 +44,8 @@ const Header = (props) => {
 						className="react-switch"
 						id="material-switch"
 					/>
-				</div>
+				</div></>
 			}
-			<div className="app-title"><span style={{fontWeight:'200'}}>Movie</span> Spot</div>
-			<Search />
 			<div><i className="material-icons mi-color wl-btn" title="My wishlist" onClick={() => toggleOpen(!opened)}>favorite</i></div>
 			{opened && <Wishlist data={props.wishlist}/>}
 		</TopBar>

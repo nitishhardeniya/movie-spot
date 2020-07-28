@@ -95,20 +95,25 @@ button {
   z-index: 999;
   display: flex;
   justify-content: space-between;
+  padding: 0px 20px;
 }
 
 .app-title {
-  /* position: relative;
-  left: 50%; */
   width: max-content;
   display: inline-block;
-  /* transform: translate(-50px); */
   text-transform: uppercase;
   color: tomato;
   font-weight: bold;
   font-size: 22px;
   line-height: 3.5;
 }
+
+@media (min-width:1025px) {
+  .header-filler {
+    width: 400px;
+  }
+}
+
 
 .mode-switch {
   display: flex;
@@ -217,7 +222,7 @@ button {
   width: 250px;
   top: 60px;
   padding: 10px;
-  right: 20px;
+  right: 40px;
   overflow: auto;
   background-color: #fff;
 }
@@ -240,7 +245,7 @@ button {
 .wl-btn {
   display: inline-flex;
   position: relative;
-  right: 25px;
+  right: 40px;
   top:25px;
   font-size:35px;
   cursor:pointer;
@@ -255,8 +260,8 @@ button {
   display: inline-block;
   position: absolute;
   left: 25px;
-  top:25px;
-  font-size:35px;
+  top:100px;
+  font-size:40px;
   cursor:pointer;
   transition: 200ms;
 }
@@ -277,7 +282,7 @@ button {
 .slider-tiles {
   display: inline-flex;
   position: relative;
-  margin: 5px;
+  margin-right: 5px;
   flex-direction: column;
   cursor: pointer;
 }
@@ -307,7 +312,7 @@ button {
 .section {
   display: flex;
   flex-direction: column;
-  /*padding: 0px 20px;*/
+  margin: 0px 20px;
   position: relative;
   top: 80px;
 }
@@ -317,7 +322,6 @@ button {
   font-weight: 300;
   line-height: 2;
   color: #6f6f6f;
-  padding-left: 5px;
 }
 
 
