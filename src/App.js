@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import Header from './components/Layout/header';
-import BottomBar from './components/Layout/bottombar';
+import Header from './components/layout/header';
+import BottomBar from './components/layout/bottombar';
 import Showcase from './pages/showcase';
 import Category from './pages/category';
 import Info from './pages/info';
@@ -57,7 +57,9 @@ function App() {
     <Provider store={movieStore} >
       <HashRouter basename={process.env.PUBLIC_URL}>
         {!isMobile ? <Header /> : <BottomBar />}
-        <Nav />
+        <section className="section">
+          <Nav />
+        </section>
       </HashRouter>
     </Provider>
   );

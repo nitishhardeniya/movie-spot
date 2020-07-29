@@ -7,27 +7,38 @@ const BottomNav = styled.div`
     background-color: ${bottombarBackground}
 `;
 
+const NavList = [{
+    path: '/',
+    icon: 'home',
+    label: 'Home'
+},
+{
+    path: '/',
+    icon: 'search',
+    label: 'Home'
+},{
+    path: '/wishlist',
+    icon: 'favorite',
+    label: 'Wishlist'
+},{
+    path: '/more-nav',
+    icon: 'more_horiz',
+    label: 'More'
+}]
+
 const BottomBar = (props) => {
-    console.log(props)
-    const changeRoute = (toPath) => {
+    // console.log(props)
+    const [activeNav, setActiveNav ] = useState(0); 
+    const changeRoute = (toPath, index) => {
+        setActiveNav(index);
         props.history.push(toPath);
     };
 
     return (<BottomNav className="bottom-nav">
         {/* <div className="app-title"><span style={{fontWeight:'200'}}>Movie</span> Spot</div> */}
-        <div className="bottomnav-item">
-            <i className="material-icons mi-pointer" onClick={() => changeRoute('/')}>home</i>
-        </div>
-        <div className="bottomnav-item">
-            <i className="material-icons mi-pointer" onClick={() => changeRoute('/')}>search</i>
-        </div>
-        <div className="bottomnav-item">
-            <i className="material-icons mi-pointer" onClick={() => changeRoute('/wishlist')}>favorite</i>
-        </div>
-        <div className="bottomnav-item">
-            <i className="material-icons mi-pointer" onClick={() => changeRoute('/more-nav')}>more_horiz</i>
-        </div>
-        
+        {NavList.map((nav, index) => <div className="bottomnav-item">
+            <i className={`material-icons mi-pointer ${activeNav === index ? 'active': ''}`} onClick={() => changeRoute(nav.path, index)}>{nav.icon}</i>
+        </div>)}
     </BottomNav>)
 }
 

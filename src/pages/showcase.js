@@ -103,25 +103,21 @@ class Showcase extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>
-				<section className="section">
-					{this.state.movies && this.state.movies.length >0 && <React.Fragment> <div className="cat-header">Search results : <b>{this.props.filters.query}</b> </div> <Slider records={this.state.movies} type="movie" size="medium" /> </React.Fragment>}
+				{this.state.movies && this.state.movies.length >0 && <React.Fragment> <div className="cat-header">Search results : <b>{this.props.filters.query}</b> </div> <Slider records={this.state.movies} type="movie" size="medium" /> </React.Fragment>}
 
-					{<React.Fragment> <div className="cat-header">{Titles['NOW_PLAYING']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/movie/now_playing')}>view all</a> </div> {(this.state.nowplaying && this.state.nowplaying.length > 0) ? <Slider records={this.state.nowplaying} type="movie" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment> }
+				{<React.Fragment> <div className="cat-header">{Titles['NOW_PLAYING']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/movie/now_playing')}>view all</a> </div> {(this.state.nowplaying && this.state.nowplaying.length > 0) ? <Slider records={this.state.nowplaying} type="movie" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment> }
 
-					{<React.Fragment> <div className="cat-header">{Titles['UPCOMING']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/movie/upcoming')}>view all</a> </div> {(this.state.upcoming && this.state.upcoming.length > 0) ? <Slider records={this.state.upcoming} type="movie" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small"/> } </React.Fragment>}
+				{<React.Fragment> <div className="cat-header">{Titles['UPCOMING']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/movie/upcoming')}>view all</a> </div> {(this.state.upcoming && this.state.upcoming.length > 0) ? <Slider records={this.state.upcoming} type="movie" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small"/> } </React.Fragment>}
 
-					{<React.Fragment> <div className="cat-header">{Titles['POPULAR']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/movie/popular')}>view all</a> </div> {(this.state.popular && this.state.popular.length > 0) ? <Slider records={this.state.popular} type="movie" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment>}
+				{<React.Fragment> <div className="cat-header">{Titles['POPULAR']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/movie/popular')}>view all</a> </div> {(this.state.popular && this.state.popular.length > 0) ? <Slider records={this.state.popular} type="movie" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment>}
 
-					{<React.Fragment> <div className="cat-header">{Titles['TOP_RATED']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/movie/top_rated')}>view all</a></div> {(this.state.toprated && this.state.toprated.length > 0) ? <Slider records={this.state.toprated} type="movie" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small"/> } </React.Fragment>}
+				{<React.Fragment> <div className="cat-header">{Titles['TOP_RATED']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/movie/top_rated')}>view all</a></div> {(this.state.toprated && this.state.toprated.length > 0) ? <Slider records={this.state.toprated} type="movie" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small"/> } </React.Fragment>}
 
-					{<React.Fragment> <div className="cat-header">{Titles['LATEST_TV']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/tv/latest_tv')}>view all</a></div> {(this.state.latestTv && this.state.latestTv.length > 0) ? <Slider records={this.state.latestTv} type="tv" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment>}
+				{<React.Fragment> <div className="cat-header">{Titles['LATEST_TV']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/tv/latest_tv')}>view all</a></div> {(this.state.latestTv && this.state.latestTv.length > 0) ? <Slider records={this.state.latestTv} type="tv" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment>}
 
-					{<React.Fragment> <div className="cat-header">{Titles['POPULAR_TV']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/tv/popular_tv')}>view all</a></div> {(this.state.popularTv && this.state.popularTv.length > 0) ? <Slider records={this.state.popularTv} type="tv" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment>}
+				{<React.Fragment> <div className="cat-header">{Titles['POPULAR_TV']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/tv/popular_tv')}>view all</a></div> {(this.state.popularTv && this.state.popularTv.length > 0) ? <Slider records={this.state.popularTv} type="tv" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment>}
 
-					{<React.Fragment> <div className="cat-header">{Titles['TOP_RATED_TV']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/tv/top_rated_tv')}>view all</a></div> {(this.state.topratedTv && this.state.topratedTv.length > 0) ? <Slider records={this.state.topratedTv} type="tv" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment>}
-
-				</section>
-				
+				{<React.Fragment> <div className="cat-header">{Titles['TOP_RATED_TV']} <a className="view-all" href="" onClick={e => this.goto(e,'/category/tv/top_rated_tv')}>view all</a></div> {(this.state.topratedTv && this.state.topratedTv.length > 0) ? <Slider records={this.state.topratedTv} type="tv" size="small" /> : <SkeletonLoader type="card" count="9" direction="row" size="small" /> } </React.Fragment>}				
 			</React.Fragment>);
 	}
 }

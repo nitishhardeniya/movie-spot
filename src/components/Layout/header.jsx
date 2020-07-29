@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import styled ,{ withTheme } from 'styled-components';
 import { headerBackground } from '../../themes';
@@ -9,7 +8,6 @@ import ToggleTheme from '../toggleTheme';
 //import { getMyWishlist } from './../actions/wishlist';
 
 const Header = (props) => {
-	const [opened, toggleOpen] = useState(false);
 	const goBack = () => {
 		props.history.goBack();
 	}
@@ -28,19 +26,9 @@ const Header = (props) => {
 					<ToggleTheme theme={props.theme}/>
 				</>
 			}
-			<div><i className="material-icons mi-color wl-btn" title="My wishlist" onClick={() => toggleOpen(!opened)}>favorite</i></div>
-			{opened && <Wishlist data={props.wishlist}/>}
+			<div><i className="material-icons mi-color wl-btn" title="My wishlist" onClick={() => props.history.push('/wishlist')}>favorite</i></div>
 		</TopBar>
 	);
 }
 
-/*const mapDispatchToProps = {
-	getMyWishlist
-}*/
-
-const mapStateToProps = (state) => ({
-	wishlist: state.wishlist
-});
-
-
-export default connect(mapStateToProps,null)(withTheme(withRouter(Header)));
+export default withTheme(withRouter(Header));

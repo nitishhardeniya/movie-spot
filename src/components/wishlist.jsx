@@ -1,13 +1,13 @@
 import React from 'react';
-import {IMG_THUMB} from './../constants/config';
 import { connect } from 'react-redux';
+import {IMG_THUMB} from './../constants/config';
 import { removeFromWishlist,clearWishlist } from './../actions/wishlist';
 
 const WishList = (props) => {
-	let wishlistData = props.data;
+	let wishlistData = props.wishlist;
 	//console.log(wishlistData,"NH")
 	return (<div className="wl">
-		Nitish's wishlist :
+		My wishlist :
 		{wishlistData && Object.keys(wishlistData).map((wlItem) => {
 			return (<div className="wl-box" key={wishlistData[wlItem].id}> 
 						<img className="wl-poster" alt="movie_img" src={IMG_THUMB+wishlistData[wlItem].poster_path} /> 
@@ -23,4 +23,9 @@ const mapDispatchToProps = {
 	clearWishlist
 }
 
-export default connect(null,mapDispatchToProps)(WishList);
+const mapStateToProps = (state) => ({
+	wishlist: state.wishlist
+});
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(WishList);
