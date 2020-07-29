@@ -339,6 +339,10 @@ button {
   top: 80px;
 }
 
+.main-content {
+  margin-left: -20px;
+}
+
 .cat-header {
   font-size: 20px;
   font-weight: 300;
@@ -393,7 +397,7 @@ button {
   border-radius: 5px;
   border: 1px solid tomato;
   font-size: 12px;
-  margin-right: 5px;
+  margin: 0px 5px 5px 0px;
 }
 
 .desc {
