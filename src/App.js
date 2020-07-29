@@ -23,6 +23,8 @@ import { createGuestSession } from './actions/authentication';
 import Wishlist from './components/wishlist';
 import MoreNav from './components/more';
 
+import DeviceContext from './context/device';
+
 const movieStore = store;
 
 movieStore.subscribe(()=>{
@@ -51,15 +53,17 @@ function App() {
       updateWindowDimensions(window.screen.width);
     });
   }, []);
-  const isMobile = screenWidth <= 480;
+  const isMobile = screenWidth <= 800;
 
   return (
     <Provider store={movieStore} >
       <HashRouter basename={process.env.PUBLIC_URL}>
+        <DeviceContext.Provider value={{ isMobile, screenWidth }}>
         {!isMobile ? <Header /> : <BottomBar />}
         <section className="section">
           <Nav />
         </section>
+        </DeviceContext.Provider>
       </HashRouter>
     </Provider>
   );

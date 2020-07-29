@@ -8,7 +8,7 @@ import Rating from 'react-rating';
 import BlankStar from '../assets/blank_star.png';
 import FilledStar from '../assets/filled_star.png';
 import Slider from './../components/slider';
-
+import DeviceContext from '../context/device';
 class Info extends PureComponent {
 
 	constructor(props){
@@ -50,7 +50,9 @@ class Info extends PureComponent {
 
 	getMovieDisplay(info){
 		return (<div className="main-content">
-					<img src={IMG_ORIGINAL+info.backdrop_path} className="img-fullpage"  alt="no img"/>
+					<DeviceContext.Consumer>{ context =>
+						<img src={`${IMG_ORIGINAL}${context.isMobile ? info.poster_path : info.backdrop_path}`} className="img-fullpage"  alt="no img"/>
+					}</DeviceContext.Consumer>
 					<div className="card-lg">
 						<div className="card-popup">
 							<div className="popup-title">{info.title}</div>
