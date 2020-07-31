@@ -1,6 +1,6 @@
 import React from 'react';
-import styled ,{ withTheme } from 'styled-components';
-import ToggleTheme from './toggleTheme';
+import { withTheme } from 'styled-components';
+import ToggleTheme from '../components/toggleTheme';
 
 const MoreNav = (props) => {
     return (<div className="more-nav">

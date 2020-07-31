@@ -32,12 +32,7 @@ class SkeletonLoader extends Component {
 		this.buildSkeleton = this.buildSkeleton.bind(this);
 	}
 
-	componentDidMount(){
-
-	}
-
 	buildSkeleton(type){
-		console.log(tileSizes[this.props.size])
 		const { width, height } = tileSizes && tileSizes[this.props.size];
 		switch(type){
 			case 'title' : 

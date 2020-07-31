@@ -13,9 +13,9 @@ const NavList = [{
     label: 'Home'
 },
 {
-    path: '/',
+    path: '/discover',
     icon: 'search',
-    label: 'Home'
+    label: 'Discover'
 },{
     path: '/wishlist',
     icon: 'favorite',

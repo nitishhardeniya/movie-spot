@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const CardLoader = ({ width, height }) => (<div className="slider-tiles loading" style={{width, height}}>
 	<div className="tile-body loading"></div>

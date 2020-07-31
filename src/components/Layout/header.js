@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter } from "react-router";
 import styled ,{ withTheme } from 'styled-components';
 import { headerBackground } from '../../themes';
