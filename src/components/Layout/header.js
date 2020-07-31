@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { withRouter } from "react-router";
 import styled ,{ withTheme } from 'styled-components';
 import { headerBackground } from '../../themes';
-import Wishlist from '../wishlist';
 import {Search} from '../filters';
 import ToggleTheme from '../toggleTheme';
 //import { getMyWishlist } from './../actions/wishlist';

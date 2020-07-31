@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withTheme } from 'styled-components';
 //import logo from './logo.svg';
 import './App.css';
 import Header from './components/layout/header';
@@ -7,7 +8,9 @@ import Showcase from './pages/showcase';
 import Category from './pages/category';
 import Info from './pages/info';
 import TVInfo from './pages/tvinfo';
-import { withTheme } from 'styled-components';
+import Wishlist from './pages/wishlist';
+import Discover from './pages/discover'
+import MoreNav from './pages/more';
 
 //Router
 import {Switch,Route} from 'react-router-dom';
@@ -20,8 +23,6 @@ import store from './store';
 //Default actions
 import { getMyWishlist } from './actions/wishlist';
 import { createGuestSession } from './actions/authentication';
-import Wishlist from './components/wishlist';
-import MoreNav from './components/more';
 
 import DeviceContext from './context/device';
 
@@ -41,6 +42,7 @@ const Nav = () => {
         <Route path='/movie/:movieId' component={Info} />
         <Route path='/tv/:tvId' component={TVInfo} />
         <Route path='/wishlist' component={Wishlist} />
+        <Route path='/discover' component={Discover} />
         <Route path='/more-nav' component={MoreNav} />
       </Switch>)
 }
