@@ -63,16 +63,18 @@ class Category extends Component {
 	render() {
 		const type = this.props.match.params ? this.props.match.params.type : "movie";
 		return (
-			<React.Fragment>
-				<div className="container-title">{Titles[this.state.category.toUpperCase()]}</div>
-				<div className="container">
-					{this.state.allMovies && this.state.allMovies.map((movie)=>{
-						return (<Card key={movie.id} cardMeta={movie} type={type} />)
-					})}
+			<>
+				<div className="main-content">
+					<div className="container-title">{Titles[this.state.category.toUpperCase()]}</div>
+					<div className="container">
+						{this.state.allMovies && this.state.allMovies.map((movie)=>{
+							return (<Card key={movie.id} cardMeta={movie} type={type} />)
+						})}
 
-					<button className="btn-primary" onClick={this.loadMoreMovies}>+ Load more </button>
-				</div>		
-			</React.Fragment>
+						<button className="btn-primary" onClick={this.loadMoreMovies}>+ Load more </button>
+					</div>
+				</div>	
+			</>
 		);
 	}
 }
