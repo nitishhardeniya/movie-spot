@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withTheme } from 'styled-components';
 //import logo from './logo.svg';
-import './App.css';
+import './styles.scss';
 import Header from './components/layout/header';
 import BottomBar from './components/layout/bottombar';
 import Showcase from './pages/showcase';
@@ -74,12 +74,12 @@ function App() {
 export default withTheme(App);
 
 
-/*TODOS:
+/* ROADMAP :
   - D Refactoring of actions
   - Toaster notifications
   - D Wishlist to be connected to store
   - D SASS for styles
-  - Skeleton loader component
+  - D Skeleton loader component
   - D Similar movies - on info page
   - D load more movies on scroll - category page
   - D Search a movie by name
@@ -88,4 +88,9 @@ export default withTheme(App);
   - D Show all wishlisted movies in drawer with scheduled time to watch
   - Add a basic login mechanism to validate user
   - Group a collection of movies and share with friends
+  - D Mobile view bottombar
+  - Filter chips on top - movies, tv, all
+  - Wishlist new look - Redesign
+  - More menu items for mobile
+  - Remove willReceiveProps from everywhere
 */
