@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "classnames": "^2.2.6",
     "react-rating": "^2.0.5"
   }
 }

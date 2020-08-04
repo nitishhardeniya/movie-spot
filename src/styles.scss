@@ -114,6 +114,24 @@ button > i {
   border: 1px solid;
 }
 
+.back-circle {
+  position: relative;
+  top: 120px;
+  left: 20px;
+  z-index: 9999;
+}
+
+.mi-action {
+  color: #000000;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #efefef;
+
+  &:hover {
+    background-color: gainsboro;
+  }
+}
+
 .mi-color {
   color: #44d8b8;
 }
@@ -151,11 +169,6 @@ button > i {
 }
 
 .container-title {
-  height: 35px;
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 2;
-  color: #6f6f6f;
   position: relative;
   top: 80px;
 }
@@ -163,7 +176,7 @@ button > i {
 .container {
   display: flex;
   position: relative;
-  padding: 0px 10%;
+  // padding: 0px 10%;
   align-self: center;
   align-items: center;
   justify-content: center;
@@ -175,7 +188,6 @@ button > i {
 
 .card {
   display: inline-block;
-  width: 190px;
   margin: 20px;
   background-color: #fff;
   border-radius: 5px;
@@ -197,7 +209,6 @@ button > i {
   padding: 10px;
   position: relative;
   bottom: 0px;
-  min-height: 50px;
 }
 
 .card-body-title {
@@ -243,23 +254,28 @@ button > i {
 
 .wl {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
   /* box-shadow: 4px 4px 4px 2px rgb(0,0,0,0.3); */
   position: absolute;
   max-height: 80vh;
   width: 100%;
-  top: 60px;
+  top: 80px;
   padding: 10px;
   /* right: 40px; */
   overflow: auto;
   background-color: #fff;
+  margin-bottom: 50px;
 }
 
 .wl-box {
   color: $theme-content-color;
+  flex-direction: column;
   font-weight: 200;
   font-size: 12px;
-  padding: 5px;
+  // margin: 0px 10px 10px 0px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -285,13 +301,8 @@ button > i {
 }
 
 .back-btn {
-  display: inline-block;
-  position: absolute;
-  left: 25px;
-  top: 120px;
-  font-size:40px;
-  cursor:pointer;
-  transition: 200ms;
+  font-size: 32px;
+  cursor: pointer;
 }
 
 .font-grey {

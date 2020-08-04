@@ -9,6 +9,8 @@ import BlankStar from '../assets/blank_star.png';
 import FilledStar from '../assets/filled_star.png';
 import Slider from './../components/slider';
 import DeviceContext from '../context/device';
+import BackNav from '../components/custom/back';
+
 class Info extends PureComponent {
 
 	constructor(props){
@@ -50,6 +52,7 @@ class Info extends PureComponent {
 
 	getMovieDisplay(info){
 		return (<div className="main-content">
+					<div className="back-circle"><BackNav circle={true} /></div>
 					<DeviceContext.Consumer>{ context =>
 						<img src={`${IMG_ORIGINAL}${context.isMobile ? info.poster_path : info.backdrop_path}`} className="img-fullpage"  alt="no img"/>
 					}</DeviceContext.Consumer>

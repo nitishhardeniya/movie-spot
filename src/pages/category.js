@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getMoviesByCategory } from './../actions/movies';
 import { getTvSeriesByCategory } from './../actions/tv';
 import Titles from './../constants/titles';
+import Grid from '../components/custom/Grid';
+import PageHeader from '../components/layout/pageheader';
 
 class Category extends Component {
 	
@@ -65,14 +67,17 @@ class Category extends Component {
 		return (
 			<>
 				<div className="main-content">
-					<div className="container-title">{Titles[this.state.category.toUpperCase()]}</div>
-					<div className="container">
-						{this.state.allMovies && this.state.allMovies.map((movie)=>{
-							return (<Card key={movie.id} cardMeta={movie} type={type} />)
-						})}
-
-						<button className="btn-primary" onClick={this.loadMoreMovies}>+ Load more </button>
+					<div className="container-title">
+						<PageHeader showBack={true} title={Titles[this.state.category.toUpperCase()]} />
 					</div>
+					<Grid container className="container">
+						{this.state.allMovies && this.state.allMovies.map((movie)=>{
+							return <Grid item xs={12} sm={12} md={4} lg={4} xl={4} className="wl-box" key={movie.id}>
+								<Card key={movie.id} cardMeta={movie} type={type} />
+							</Grid>
+						})}
+						<button className="btn-primary" onClick={this.loadMoreMovies}>+ Load more </button>
+					</Grid>
 				</div>	
 			</>
 		);
